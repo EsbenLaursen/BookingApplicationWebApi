@@ -114,5 +114,81 @@ namespace UnitTestS
                 Assert.AreEqual(r, rm.Read(r));
             }
         }
+
+        [TestMethod]
+        public void RemoveRoomExistingRoomTest()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            Room r = new Room()
+            {
+                Id = 1,
+                Name = "Room1",
+                Persons = 2,
+                Price = 500,
+                Description = "blabla"
+            };
+            Room rr = new Room()
+            {
+                Id = 2,
+                Name = "Room2",
+                Persons = 2,
+                Price = 500,
+                Description = "jigaijgijag"
+            };
+
+            rm.Create(r);
+            rm.Create(rr);
+
+            rm.Delete(r);
+
+            Assert.AreEqual(1, rooms.Count);
+            Assert.AreEqual(rr, rm.ReadAll()[0]);
+
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AssertFailedException))]
+        public void RemoveRoomNonExistingRoomTest()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            Room r = new Room()
+            {
+                Id = 1,
+                Name = "Room1",
+                Persons = 2,
+                Price = 500,
+                Description = "blabla"
+            };
+            Room rr = new Room()
+            {
+                Id = 2,
+                Name = "Room2",
+                Persons = 2,
+                Price = 500,
+                Description = "jigaijgijag"
+            };
+            rm.Create(r);
+
+            var lrm = rm.ReadAll();
+
+
+            try
+            {
+                rm.Delete(rr);
+                Assert.Fail("Removed none existing Room ");
+            }
+            catch (ArgumentException)
+            {
+
+                Assert.AreEqual(1, rooms.Count);
+                Assert.AreEqual(r, rm.ReadAll()[0]);
+
+            }
+        }
     }
 }

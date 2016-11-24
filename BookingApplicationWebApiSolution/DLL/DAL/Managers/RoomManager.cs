@@ -35,7 +35,11 @@ namespace DLL.DAL.Managers
 
         public bool Delete(Room t)
         {
-            throw new NotImplementedException();
+            if (t.Id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Room does not exist");
+            }
+            return rr.Delete(t);
         }
 
         public Room Read(Room t)
@@ -49,7 +53,7 @@ namespace DLL.DAL.Managers
 
         public List<Room> ReadAll()
         {
-            throw new NotImplementedException();
+            return rr.ReadAll();
         }
 
         public bool Update(Room t)
