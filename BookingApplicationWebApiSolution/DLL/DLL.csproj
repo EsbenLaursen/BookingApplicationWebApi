@@ -52,6 +52,10 @@
     <Compile Include="Booking.cs" />
     <Compile Include="DAL\BookingDbContext.cs" />
     <Compile Include="DAL\BookingDbInitializer.cs" />
+    <Compile Include="DAL\Entities\Booking.cs" />
+    <Compile Include="DAL\Entities\Customer.cs" />
+    <Compile Include="DAL\Entities\FootCare.cs" />
+    <Compile Include="DAL\Entities\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
