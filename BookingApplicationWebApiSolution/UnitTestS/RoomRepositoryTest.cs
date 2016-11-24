@@ -15,6 +15,8 @@ namespace UnitTestS
     public class RoomRepositoryTest
     {
         private static Mock<IRepository<Room>> mock;
+
+        // Internal list of rooms replacing the repository (fake repository)
         private static IList<Room> rooms = new List<Room>();
 
         [ClassInitialize]
@@ -31,12 +33,21 @@ namespace UnitTestS
                 .Callback<Room>((s) => rooms.Insert(rooms.IndexOf(rooms.FirstOrDefault(x => x.Id == s.Id)), s));
         }
 
+        /// <summary>
+        /// Executed before each test method is executed.
+        /// Ensures each test is executed on an empty repository.
+        /// </summary>
+
         [TestInitialize]
         public void testInitializer()
         {
 
             rooms.Clear();
         }
+
+        /// <summary>
+        /// Test method testing the creation of a RoomManager with an existing repository.
+        /// </summary>
 
         [TestMethod]
         public void CreateRoomManagerExitingRepositoryTest()
@@ -48,9 +59,14 @@ namespace UnitTestS
             Assert.AreEqual(0, rooms.Count);
         }
 
+        /// <summary>
+        /// Test method testing creation of a RoomManager with no repository (null).
+        /// Expects ArgumentNullException to be thrown.
+        /// </summary>
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateStudentManagerNoRepositoryExceptionExcpected()
+        public void CreateRoomManagerNoRepositoryExceptionExcpected()
         {
             IRepository<Room> repo = null;
             RoomManager rm = new RoomManager(repo);
@@ -58,6 +74,9 @@ namespace UnitTestS
             Assert.Fail("Created lablaba with null repository");
         }
 
+        /// <summary>
+        /// Test method testing adding a new room to the repository.
+        /// </summary>
 
         [TestMethod]
         public void AddNewRoomTest()
@@ -73,6 +92,11 @@ namespace UnitTestS
 
         }
 
+        /// <summary>
+        /// Test method adding an existing room to the repository.
+        /// Expects an ArgumentException to be thrown.
+        /// </summary>
+
         [TestMethod]
         public void AddRoomExistingRoomTest()
         {
@@ -84,7 +108,7 @@ namespace UnitTestS
 
             try
             {
-                rm.Create(r);
+                rm.Create(r); // try to add the same room again
                 Assert.Fail("Added existing room to repository");
             }
             catch (ArgumentException)
@@ -93,6 +117,10 @@ namespace UnitTestS
                 Assert.AreEqual(r, rm.Read(1));
             }
         }
+
+        /// <summary>
+        /// Test method testing removal of an existing remove.
+        /// </summary>
 
         [TestMethod]
         public void RemoveRoomExistingRoomTest()
@@ -113,6 +141,11 @@ namespace UnitTestS
 
 
         }
+
+        /// <summary>
+        /// Test method testing removal of a non-existing room.
+        /// Expects an ArgumentException to be thrown.
+        /// </summary>
 
         [TestMethod]
         public void RemoveRoomNonExistingRoomTest()
@@ -137,6 +170,49 @@ namespace UnitTestS
                 Assert.AreEqual(r, rm.ReadAll()[0]);
 
             }
+        }
+        /// <summary>
+        /// Test method testing the retrieval of all rooms from the repository.
+        /// </summary>
+        [TestMethod]
+        public void ReadAllRooms_Test()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
+            Room rr = new Room() { Id = 2, Name = "Room2", Persons = 2, Price = 500, Description = "jigaijgijag" };
+
+            rm.Create(r);
+            rm.Create(rr);
+
+            IList<Room> result = rm.ReadAll();
+
+            Assert.AreEqual(2, result.Count);   
+            Assert.AreEqual(r, result[0]);
+            Assert.AreEqual(rr, result[1]);
+
+        }
+
+        /// <summary>
+        /// Test method testing retrieval of an existing room with a specific Id.
+        /// </summary>
+
+        [TestMethod]
+        public void GetRoomById_Existing_Room_Test()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
+            Room rr = new Room() { Id = 2, Name = "Room2", Persons = 2, Price = 500, Description = "jigaijgijag" };
+
+            rm.Create(r);
+            rm.Create(rr);
+
+            Room result = rm.Read(1);
+
+            Assert.AreEqual(r, result);
         }
     }
 }
