@@ -15,6 +15,8 @@ namespace UnitTestS
     public class RoomRepositoryTest
     {
         private static Mock<IRepository<Room>> mock;
+
+        // Internal list of rooms replacing the repository (fake repository)
         private static IList<Room> rooms = new List<Room>();
 
         [ClassInitialize]
@@ -31,12 +33,21 @@ namespace UnitTestS
                 .Callback<Room>((s) => rooms.Insert(rooms.IndexOf(rooms.FirstOrDefault(x => x.Id == s.Id)), s));
         }
 
+        /// <summary>
+        /// Executed before each test method is executed.
+        /// Ensures each test is executed on an empty repository.
+        /// </summary>
+
         [TestInitialize]
         public void testInitializer()
         {
 
             rooms.Clear();
         }
+
+        /// <summary>
+        /// Test method testing the creation of a RoomManager with an existing repository.
+        /// </summary>
 
         [TestMethod]
         public void CreateRoomManagerExitingRepositoryTest()
@@ -48,9 +59,14 @@ namespace UnitTestS
             Assert.AreEqual(0, rooms.Count);
         }
 
+        /// <summary>
+        /// Test method testing creation of a RoomManager with no repository (null).
+        /// Expects ArgumentNullException to be thrown.
+        /// </summary>
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateStudentManagerNoRepositoryExceptionExcpected()
+        public void CreateRoomManagerNoRepositoryExceptionExcpected()
         {
             IRepository<Room> repo = null;
             RoomManager rm = new RoomManager(repo);
@@ -58,6 +74,9 @@ namespace UnitTestS
             Assert.Fail("Created lablaba with null repository");
         }
 
+        /// <summary>
+        /// Test method testing adding a new room to the repository.
+        /// </summary>
 
         [TestMethod]
         public void AddNewRoomTest()
@@ -73,6 +92,11 @@ namespace UnitTestS
 
         }
 
+        /// <summary>
+        /// Test method adding an existing room to the repository.
+        /// Expects an ArgumentException to be thrown.
+        /// </summary>
+
         [TestMethod]
         public void AddRoomExistingRoomTest()
         {
@@ -84,7 +108,7 @@ namespace UnitTestS
 
             try
             {
-                rm.Create(r);
+                rm.Create(r); // try to add the same room again
                 Assert.Fail("Added existing room to repository");
             }
             catch (ArgumentException)
@@ -93,6 +117,10 @@ namespace UnitTestS
                 Assert.AreEqual(r, rm.Read(1));
             }
         }
+
+        /// <summary>
+        /// Test method testing removal of an existing remove.
+        /// </summary>
 
         [TestMethod]
         public void RemoveRoomExistingRoomTest()
@@ -113,6 +141,11 @@ namespace UnitTestS
 
 
         }
+
+        /// <summary>
+        /// Test method testing removal of a non-existing room.
+        /// Expects an ArgumentException to be thrown.
+        /// </summary>
 
         [TestMethod]
         public void RemoveRoomNonExistingRoomTest()
@@ -143,31 +176,7 @@ namespace UnitTestS
 
         //update room with null, argument exception excpected
 
-        [TestMethod]
-        public void UpdateexistingRoom()
-        {
-            IRepository<Room> repo = mock.Object;
-            RoomManager rm = new RoomManager(repo);
-
-            //Create and adds the room
-            Room r1 = new Room() { Id = 1, Name = "Toilet", Persons = 2, Price = 500, Description = "Very gross" };
-            rm.Create(r1);
-
-            Room r2 = new Room() { Id = 1, Name = "Living room", Persons = 4, Price = 300, Description = "Smooth" };
- 
-            bool isUpdated = rm.Update(r2);
-
-            
-
-            Assert.AreEqual(true, isUpdated);
-            Assert.AreEqual(r1.Name, r2.Name);
-            Assert.AreEqual(r1.Persons, r2.Persons);
-            Assert.AreEqual(r1.Price, r2.Price);
-            Assert.AreEqual(r1.Description, r2.Description);
-            Assert.AreEqual(r1.Id, r2.Id);
-            Assert.AreEqual(r1, r2);
-
-
+            }
         }
     }
 }
