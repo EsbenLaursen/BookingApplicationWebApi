@@ -169,14 +169,81 @@ namespace UnitTestS
                 Assert.AreEqual(r, rm.ReadAll()[0]);
             }
         }
+        /// <summary>
+        /// Test method testing the retrieval of all rooms from the repository.
+        /// </summary>
+        [TestMethod]
+        public void ReadAllRooms_Test()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
 
-        //update existing room
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
+            Room rr = new Room() { Id = 2, Name = "Room2", Persons = 2, Price = 500, Description = "jigaijgijag" };
 
-        //update room that doesnt exists
+            rm.Create(r);
+            rm.Create(rr);
 
-        //update room with null, argument exception excpected
+            IList<Room> result = rm.ReadAll();
 
-            }
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(r, result[0]);
+            Assert.AreEqual(rr, result[1]);
+
         }
-    }
+        /// <summary>
+        /// Test method testing retrieval of an existing room with a specific Id.
+        /// </summary>
+
+        [TestMethod]
+        public void GetRoomById_Existing_Room_Test()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
+            Room rr = new Room() { Id = 2, Name = "Room2", Persons = 2, Price = 500, Description = "jigaijgijag" };
+
+            rm.Create(r);
+            rm.Create(rr);
+
+            Room result = rm.Read(1);
+
+            Assert.AreEqual(r, result);
+        }
+        [TestMethod]
+        public void UpdateexistingRoom()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            //Create and adds the room
+            Room r1 = new Room() { Id = 1, Name = "Toilet", Persons = 2, Price = 500, Description = "Very gross" };
+            rm.Create(r1);
+
+            Room r2 = new Room() { Id = 1, Name = "Living room", Persons = 4, Price = 300, Description = "Smooth" };
+
+            bool isUpdated = rm.Update(r2);
+
+
+
+            Assert.AreEqual(true, isUpdated);
+            Assert.AreEqual(r1.Name, r2.Name);
+            Assert.AreEqual(r1.Persons, r2.Persons);
+            Assert.AreEqual(r1.Price, r2.Price);
+            Assert.AreEqual(r1.Description, r2.Description);
+            Assert.AreEqual(r1.Id, r2.Id);
+         
+        }
+
+
+            //update existing room
+
+            //update room that doesnt exists
+
+            //update room with null, argument exception excpected
+
+
+
+        }
 }
