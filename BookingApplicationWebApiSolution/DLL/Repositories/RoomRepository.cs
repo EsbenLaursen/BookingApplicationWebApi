@@ -19,7 +19,7 @@ namespace DLL.Repositories
             throw new NotImplementedException();
         }
 
-        public Room Read(Room t)
+        public Room Read(int id)
         {
             throw new NotImplementedException();
         }

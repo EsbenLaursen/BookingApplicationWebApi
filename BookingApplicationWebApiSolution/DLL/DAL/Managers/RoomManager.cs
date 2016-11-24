@@ -25,7 +25,7 @@ namespace DLL.DAL.Managers
         }
         public Room Create(Room t)
         {
-            if (Read(t) != null)
+            if (Read(t.Id) != null)
             {
                 throw new ArgumentNullException("Room already exists");
             }
@@ -35,20 +35,20 @@ namespace DLL.DAL.Managers
 
         public bool Delete(Room t)
         {
-            if (t.Id <= 0)
+            if (rr.Read(t.Id) == null)
             {
                 throw new ArgumentOutOfRangeException("Room does not exist");
             }
             return rr.Delete(t);
         }
 
-        public Room Read(Room t)
+        public Room Read(int id)
         {
-            if (t.Id  <= 0)
+            if (id <= 0)
             {
                 throw new ArgumentOutOfRangeException("Id out of range");
             }
-            return rr.Read(t);
+            return rr.Read(id);
         }
 
         public List<Room> ReadAll()

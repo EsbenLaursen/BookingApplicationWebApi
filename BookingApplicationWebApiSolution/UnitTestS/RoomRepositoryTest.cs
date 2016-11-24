@@ -25,7 +25,7 @@ namespace UnitTestS
             mock = new Mock<IRepository<Room>>();
             mock.Setup(x => x.Create(It.IsAny<Room>())).Callback<Room>((s) => rooms.Add(s));
             mock.Setup(x => x.ReadAll()).Returns(() => rooms.ToList());
-            mock.Setup(x => x.Read(It.IsAny<Room>())).Returns((Room r) => rooms.FirstOrDefault(x => x.Id == r.Id));
+            mock.Setup(x => x.Read(It.IsAny<int>())).Returns((int id) => rooms.FirstOrDefault(x => x.Id == id));
             mock.Setup(x => x.Delete(It.IsAny<Room>())).Callback<Room>((s) => rooms.Remove(s));
             mock.Setup(x => x.Update(It.IsAny<Room>()))
                 .Callback<Room>((s) => rooms.Insert(rooms.IndexOf(rooms.FirstOrDefault(x => x.Id == s.Id)), s));
@@ -65,21 +65,10 @@ namespace UnitTestS
             IRepository<Room> repo = mock.Object;
             RoomManager rm = new RoomManager(repo);
 
-
-            Room r = new Room()
-            {
-                Id = 1,
-                Name = "Room1",
-                Persons = 2,
-                Price = 500,
-                Description = "blabla"
-            };
-
-
-
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
             rm.Create(r);
 
-            Assert.AreEqual(r, rm.Read(r));
+            Assert.AreEqual(r, rm.Read(1));
             Assert.AreEqual(1, rooms.Count);
 
         }
@@ -90,17 +79,7 @@ namespace UnitTestS
             IRepository<Room> repo = mock.Object;
             RoomManager rm = new RoomManager(repo);
 
-            Room r = new Room()
-            {
-                Id = 1,
-                Name = "Room1",
-                Persons = 2,
-                Price = 500,
-                Description = "blabla"
-            };
-
-
-
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
             rm.Create(r);
 
             try
@@ -111,7 +90,7 @@ namespace UnitTestS
             catch (ArgumentException)
             {
                 Assert.AreEqual(1, rooms.Count);
-                Assert.AreEqual(r, rm.Read(r));
+                Assert.AreEqual(r, rm.Read(1));
             }
         }
 
@@ -121,22 +100,8 @@ namespace UnitTestS
             IRepository<Room> repo = mock.Object;
             RoomManager rm = new RoomManager(repo);
 
-            Room r = new Room()
-            {
-                Id = 1,
-                Name = "Room1",
-                Persons = 2,
-                Price = 500,
-                Description = "blabla"
-            };
-            Room rr = new Room()
-            {
-                Id = 2,
-                Name = "Room2",
-                Persons = 2,
-                Price = 500,
-                Description = "jigaijgijag"
-            };
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
+            Room rr = new Room() { Id = 2, Name = "Room2", Persons = 2, Price = 500, Description = "jigaijgijag" };
 
             rm.Create(r);
             rm.Create(rr);
@@ -150,32 +115,15 @@ namespace UnitTestS
         }
 
         [TestMethod]
-        [ExpectedException(typeof(AssertFailedException))]
         public void RemoveRoomNonExistingRoomTest()
         {
             IRepository<Room> repo = mock.Object;
             RoomManager rm = new RoomManager(repo);
 
-            Room r = new Room()
-            {
-                Id = 1,
-                Name = "Room1",
-                Persons = 2,
-                Price = 500,
-                Description = "blabla"
-            };
-            Room rr = new Room()
-            {
-                Id = 2,
-                Name = "Room2",
-                Persons = 2,
-                Price = 500,
-                Description = "jigaijgijag"
-            };
+            Room r = new Room() { Id = 1, Name = "Room1", Persons = 2, Price = 500, Description = "blabla" };
+            Room rr = new Room() { Id = 2, Name = "Room2", Persons = 2, Price = 500, Description = "jigaijgijag" };
+
             rm.Create(r);
-
-            var lrm = rm.ReadAll();
-
 
             try
             {
