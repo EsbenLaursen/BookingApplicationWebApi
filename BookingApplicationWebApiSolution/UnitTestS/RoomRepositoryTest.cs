@@ -132,11 +132,42 @@ namespace UnitTestS
             }
             catch (ArgumentException)
             {
-
                 Assert.AreEqual(1, rooms.Count);
                 Assert.AreEqual(r, rm.ReadAll()[0]);
-
             }
+        }
+
+        //update existing room
+
+        //update room that doesnt exists
+
+        //update room with null, argument exception excpected
+
+        [TestMethod]
+        public void UpdateexistingRoom()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            //Create and adds the room
+            Room r1 = new Room() { Id = 1, Name = "Toilet", Persons = 2, Price = 500, Description = "Very gross" };
+            rm.Create(r1);
+
+            Room r2 = new Room() { Id = 1, Name = "Living room", Persons = 4, Price = 300, Description = "Smooth" };
+ 
+            bool isUpdated = rm.Update(r2);
+
+            
+
+            Assert.AreEqual(true, isUpdated);
+            Assert.AreEqual(r1.Name, r2.Name);
+            Assert.AreEqual(r1.Persons, r2.Persons);
+            Assert.AreEqual(r1.Price, r2.Price);
+            Assert.AreEqual(r1.Description, r2.Description);
+            Assert.AreEqual(r1.Id, r2.Id);
+            Assert.AreEqual(r1, r2);
+
+
         }
     }
 }

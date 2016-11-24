@@ -58,7 +58,17 @@ namespace DLL.DAL.Managers
 
         public bool Update(Room t)
         {
-            throw new NotImplementedException();
+            if (rr.Read(t.Id) == null) {
+                throw new ArgumentNullException();
+            }
+            Room r = rr.Read(t.Id);
+            r.Name = t.Name;
+            r.Description = t.Description;
+            r.Price = t.Price;
+            r.Persons = t.Persons;
+          
+            return true;
+
         }
     }
 }
