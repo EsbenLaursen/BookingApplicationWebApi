@@ -230,7 +230,7 @@ namespace UnitTestS
             Assert.AreEqual(f1.Price, f2.Price);
             Assert.AreEqual(f1.Description, f2.Description);
             Assert.AreEqual(f1.Id, f2.Id);
-
+            Assert.AreEqual(f1.Id, f2.Id);
         }
     }
 }
