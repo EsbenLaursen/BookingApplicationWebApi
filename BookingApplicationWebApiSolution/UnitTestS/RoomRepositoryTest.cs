@@ -225,25 +225,41 @@ namespace UnitTestS
 
             bool isUpdated = rm.Update(r2);
 
-
-
             Assert.AreEqual(true, isUpdated);
             Assert.AreEqual(r1.Name, r2.Name);
             Assert.AreEqual(r1.Persons, r2.Persons);
             Assert.AreEqual(r1.Price, r2.Price);
             Assert.AreEqual(r1.Description, r2.Description);
             Assert.AreEqual(r1.Id, r2.Id);
-         
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateRoomThatDoesntexist()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            //Create room
+            Room r1 = new Room() { Id = 1, Name = "Toilet", Persons = 2, Price = 500, Description = "Very gross" };
+            //try update the room which doesnt exist
+            rm.Update(r1);
+
+            Assert.Fail("Updated room that didnt exist");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateRoomWithNullParameter()
+        {
+            IRepository<Room> repo = mock.Object;
+            RoomManager rm = new RoomManager(repo);
+
+            rm.Update(null);
+
+            Assert.Fail("Updated room with null");
         }
 
 
-            //update existing room
 
-            //update room that doesnt exists
-
-            //update room with null, argument exception excpected
-
-
-
-        }
+    }
 }

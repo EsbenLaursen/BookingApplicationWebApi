@@ -58,8 +58,12 @@ namespace DLL.DAL.Managers
 
         public bool Update(Room t)
         {
+            if (t == null)
+            {
+                throw new ArgumentNullException("Room is null");
+            }
             if (rr.Read(t.Id) == null) {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Room isnt in DB");
             }
             Room r = rr.Read(t.Id);
             r.Name = t.Name;
