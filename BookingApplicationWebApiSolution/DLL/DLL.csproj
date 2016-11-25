@@ -56,8 +56,10 @@
     <Compile Include="DAL\Entities\Customer.cs" />
     <Compile Include="DAL\Entities\FootCare.cs" />
     <Compile Include="DAL\Entities\Room.cs" />
+    <Compile Include="DAL\Managers\FootCareManager.cs" />
     <Compile Include="DAL\Managers\RoomManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\FootCareRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
   </ItemGroup>
