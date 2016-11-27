@@ -14,7 +14,7 @@ namespace BookingApplicationWebApi
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Room Room { get; set; }
+        public List<Room> Room { get; set; }
         public bool Breakfast { get; set; }
 
         public virtual Customer Customer { get; set; }
