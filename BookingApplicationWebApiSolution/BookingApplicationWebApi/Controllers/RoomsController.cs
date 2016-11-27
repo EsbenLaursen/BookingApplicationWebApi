@@ -10,24 +10,28 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using DLL.DAL;
 using DLL.DAL.Entities;
+using DLL;
+using DLL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
     public class RoomsController : ApiController
     {
-        private BookingDbContext db = new BookingDbContext();
+        //  private BookingDbContext db = new BookingDbContext();
+
+        IRepository<Room> repo = new DllFacade().GetRoomManager();
 
         // GET: api/Rooms
         public List<Room> GetRooms()
         {
-            return db.Rooms.ToList();
+            return repo.ReadAll();
         }
 
         // GET: api/Rooms/5
         [ResponseType(typeof(Room))]
         public IHttpActionResult GetRoom(int id)
         {
-            Room room = db.Rooms.Find(id);
+            Room room = repo.Read(id) ;
             if (room == null)
             {
                 return NotFound();
@@ -50,23 +54,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(room).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            repo.Update(room);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -80,8 +68,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Rooms.Add(room);
-            db.SaveChanges();
+            repo.Create(room);
 
             return CreatedAtRoute("DefaultApi", new { id = room.Id }, room);
         }
@@ -90,30 +77,16 @@ namespace BookingApplicationWebApi.Controllers
         [ResponseType(typeof(Room))]
         public IHttpActionResult DeleteRoom(int id)
         {
-            Room room = db.Rooms.Find(id);
+            Room room = repo.Read(id);
             if (room == null)
             {
                 return NotFound();
             }
 
-            db.Rooms.Remove(room);
-            db.SaveChanges();
+            repo.Delete(room);
 
             return Ok(room);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool RoomExists(int id)
-        {
-            return db.Rooms.Count(e => e.Id == id) > 0;
-        }
     }
 }
