@@ -33,10 +33,13 @@ namespace DLL.DAL
             Customers.Add(c6);
 
 
+            for(Customer c in Customers)
+            {
+                context.Customers.Add(c);
+            }
 
-            
 
-          
+
 
         }
     }
