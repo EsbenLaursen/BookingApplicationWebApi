@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingApplicationWebApi;
 
 namespace DLL.DAL
 {
@@ -22,8 +23,20 @@ namespace DLL.DAL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<FootCare> FootCares { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Configure StudentId as PK for StudentAddress
+            modelBuilder.Entity<Booking>()
+                .HasKey(e => e.CustomerId);
+
+            // Configure StudentId as FK for StudentAddress
+            modelBuilder.Entity<Customer>()
+                .HasRequired(s => s.Booking)
+                .WithRequiredPrincipal(ad => ad.Customer);    
+
+        }
+
     }
-
-  
-
 }

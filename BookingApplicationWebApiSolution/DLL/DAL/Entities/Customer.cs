@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingApplicationWebApi;
 
 namespace DLL.DAL.Entities
 {
@@ -13,5 +14,8 @@ namespace DLL.DAL.Entities
         public string Lastname { get; set; }
         public string Email { get; set; }
         public string PhoneNr { get; set; }
+
+
+        public virtual Booking Booking { get; set; }
     }
 }
