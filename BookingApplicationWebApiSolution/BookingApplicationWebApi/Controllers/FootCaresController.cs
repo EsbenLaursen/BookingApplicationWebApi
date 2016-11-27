@@ -8,26 +8,28 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DLL;
 using DLL.DAL;
 using DLL.DAL.Entities;
+using DLL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
     public class FootCaresController : ApiController
     {
-        private BookingDbContext db = new BookingDbContext();
+        private IRepository<FootCare> repo = new DllFacade().GetFootCareManager();
 
         // GET: api/FootCares
-        public IQueryable<FootCare> GetFootCares()
+        public List<FootCare> GetFootCares()
         {
-            return db.FootCares;
+            return repo.ReadAll();
         }
 
         // GET: api/FootCares/5
         [ResponseType(typeof(FootCare))]
         public IHttpActionResult GetFootCare(int id)
         {
-            FootCare footCare = db.FootCares.Find(id);
+            FootCare footCare = repo.Read(id);
             if (footCare == null)
             {
                 return NotFound();
@@ -50,23 +52,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(footCare).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FootCareExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            repo.Update(footCare);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -80,8 +66,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.FootCares.Add(footCare);
-            db.SaveChanges();
+            repo.Create(footCare);
 
             return CreatedAtRoute("DefaultApi", new { id = footCare.Id }, footCare);
         }
@@ -90,30 +75,15 @@ namespace BookingApplicationWebApi.Controllers
         [ResponseType(typeof(FootCare))]
         public IHttpActionResult DeleteFootCare(int id)
         {
-            FootCare footCare = db.FootCares.Find(id);
+            FootCare footCare = repo.Read(id);
             if (footCare == null)
             {
                 return NotFound();
             }
 
-            db.FootCares.Remove(footCare);
-            db.SaveChanges();
+            repo.Delete(footCare);
 
             return Ok(footCare);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool FootCareExists(int id)
-        {
-            return db.FootCares.Count(e => e.Id == id) > 0;
         }
     }
 }

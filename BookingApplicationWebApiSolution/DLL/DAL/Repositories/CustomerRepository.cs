@@ -1,9 +1,12 @@
 ﻿using DLL.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingApplicationWebApi;
+using DLL.DAL;
 
 namespace DLL.Repositories
 {
@@ -11,27 +14,48 @@ namespace DLL.Repositories
     {
         public Customer Create(Customer t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                Customer c = ctx.Customers.Add(t);
+                ctx.SaveChanges();
+                return c;
+            }
         }
 
         public bool Delete(Customer t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                Customer c = ctx.Customers.Remove(t);
+                ctx.SaveChanges();
+                return true;
+            }
         }
 
         public Customer Read(int id)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                return ctx.Customers.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         public List<Customer> ReadAll()
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                return ctx.Customers.ToList();
+            }
         }
 
         public bool Update(Customer t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                ctx.Entry(t).State = EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
         }
     }
 }

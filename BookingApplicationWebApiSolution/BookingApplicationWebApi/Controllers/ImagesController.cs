@@ -8,26 +8,28 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DLL;
 using DLL.DAL;
 using DLL.DAL.Entities;
+using DLL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
     public class ImagesController : ApiController
     {
-        private BookingDbContext db = new BookingDbContext();
+        private IRepository<Image> repo = new DllFacade().GetImageManager();
 
         // GET: api/Images
-        public IQueryable<Image> GetImages()
+        public List<Image> GetImages()
         {
-            return db.Images;
+            return repo.ReadAll();
         }
 
         // GET: api/Images/5
         [ResponseType(typeof(Image))]
         public IHttpActionResult GetImage(int id)
         {
-            Image image = db.Images.Find(id);
+            Image image = repo.Read(id);
             if (image == null)
             {
                 return NotFound();
@@ -50,24 +52,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(image).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ImageExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            repo.Update(image);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -80,8 +65,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Images.Add(image);
-            db.SaveChanges();
+            repo.Create(image);
 
             return CreatedAtRoute("DefaultApi", new { id = image.Id }, image);
         }
@@ -90,30 +74,15 @@ namespace BookingApplicationWebApi.Controllers
         [ResponseType(typeof(Image))]
         public IHttpActionResult DeleteImage(int id)
         {
-            Image image = db.Images.Find(id);
+            Image image = repo.Read(id);
             if (image == null)
             {
                 return NotFound();
             }
 
-            db.Images.Remove(image);
-            db.SaveChanges();
+            repo.Delete(image);
 
             return Ok(image);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ImageExists(int id)
-        {
-            return db.Images.Count(e => e.Id == id) > 0;
         }
     }
 }

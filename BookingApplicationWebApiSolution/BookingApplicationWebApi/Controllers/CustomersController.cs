@@ -8,26 +8,28 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DLL;
 using DLL.DAL;
 using DLL.DAL.Entities;
+using DLL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
     public class CustomersController : ApiController
     {
-        private BookingDbContext db = new BookingDbContext();
+        private IRepository<Customer> repo = new DllFacade().GetCustomerManager();
 
         // GET: api/Customers
-        public IQueryable<Customer> GetCustomers()
+        public List<Customer> GetCustomers()
         {
-            return db.Customers;
+            return repo.ReadAll();
         }
 
         // GET: api/Customers/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult GetCustomer(int id)
         {
-            Customer customer = db.Customers.Find(id);
+            Customer customer = repo.Read(id);
             if (customer == null)
             {
                 return NotFound();
@@ -50,23 +52,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(customer).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CustomerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            repo.Update(customer);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -80,8 +66,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Customers.Add(customer);
-            db.SaveChanges();
+            repo.Create(customer);
 
             return CreatedAtRoute("DefaultApi", new { id = customer.Id }, customer);
         }
@@ -90,30 +75,15 @@ namespace BookingApplicationWebApi.Controllers
         [ResponseType(typeof(Customer))]
         public IHttpActionResult DeleteCustomer(int id)
         {
-            Customer customer = db.Customers.Find(id);
+            Customer customer = repo.Read(id);
             if (customer == null)
             {
                 return NotFound();
             }
 
-            db.Customers.Remove(customer);
-            db.SaveChanges();
+            repo.Delete(customer);
 
             return Ok(customer);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool CustomerExists(int id)
-        {
-            return db.Customers.Count(e => e.Id == id) > 0;
         }
     }
 }

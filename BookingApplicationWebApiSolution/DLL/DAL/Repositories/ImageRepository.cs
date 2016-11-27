@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DLL.DAL;
 using DLL.DAL.Entities;
 using DLL.Repositories;
 
@@ -12,27 +14,49 @@ namespace DLL.Repositories
     {
         public Image Create(Image t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                ctx.Images.Add(t);
+                ctx.SaveChanges();
+                return t;
+            }
         }
 
         public bool Delete(Image t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                ctx.Images.Remove(t);
+                ctx.SaveChanges();
+                return true;
+            }
         }
 
         public Image Read(int id)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                return ctx.Images.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         public List<Image> ReadAll()
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                return ctx.Images.ToList();
+
+            }
         }
 
         public bool Update(Image t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                ctx.Entry(t).State = EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
         }
     }
 }
