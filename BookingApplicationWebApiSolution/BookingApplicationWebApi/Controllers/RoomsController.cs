@@ -18,9 +18,9 @@ namespace BookingApplicationWebApi.Controllers
         private BookingDbContext db = new BookingDbContext();
 
         // GET: api/Rooms
-        public IQueryable<Room> GetRooms()
+        public List<Room> GetRooms()
         {
-            return db.Rooms;
+            return db.Rooms.ToList();
         }
 
         // GET: api/Rooms/5
