@@ -24,11 +24,6 @@ namespace DLL.DAL
         public DbSet<Booking> Bookings { get; set; }
     }
 
-    //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    //{
-    //    modelBuilder.Entity<Customer>().HasRequired<Booking>(b => b.Bookings).WithMany(g => g.Genres);
-
-
-    //}
+  
 
 }
