@@ -4,34 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DLL.DAL.Entities;
+using DLL.DAL;
+using System.Data.Entity;
 
 namespace DLL.Repositories
 {
-    class RoomRepository : IRepository<Room>
+    public class RoomRepository : IRepository<Room>
     {
         public Room Create(Room t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                Room r = ctx.Rooms.Add(t);
+                ctx.SaveChanges();
+                return r;
+            }
         }
 
         public bool Delete(Room t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                ctx.Rooms.Remove(t);
+                ctx.SaveChanges();
+                return true;
+            }
         }
 
         public Room Read(int id)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                return ctx.Rooms.FirstOrDefault(x => x.Id == id);
+            }
         }
 
         public List<Room> ReadAll()
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                return ctx.Rooms.ToList();
+            }
         }
 
         public bool Update(Room t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new BookingDbContext())
+            {
+                ctx.Entry(t).State = EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
         }
     }
 }

@@ -40,9 +40,10 @@ namespace DLL.DAL
 
 
             //Configure 1-many relation between Room and Booking
-            modelBuilder.Entity<Room>().HasRequired<Booking>(s => s.Booking).WithMany(o => o.Room);
+            modelBuilder.Entity<Room>().HasOptional<Booking>(s => s.Booking).WithMany(o => o.Room);
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder);
         }
 
     }
