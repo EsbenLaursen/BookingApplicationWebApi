@@ -66,6 +66,7 @@
     <Compile Include="DAL\Managers\ImageManager.cs" />
     <Compile Include="DAL\Managers\RoomManager.cs" />
     <Compile Include="DAL\DllFacade.cs" />
+    <Compile Include="DAL\Repositories\BookingRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAL\Repositories\CustomerRepository.cs" />
     <Compile Include="DAL\Repositories\FootCareRepository.cs" />

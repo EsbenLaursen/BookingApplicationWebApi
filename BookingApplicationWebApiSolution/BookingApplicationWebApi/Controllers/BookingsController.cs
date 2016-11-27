@@ -11,25 +11,26 @@ using System.Web.Http.Description;
 using BookingApplicationWebApi;
 using DLL.DAL;
 using DLL.Repositories;
+using DLL;
 
 namespace BookingApplicationWebApi.Controllers
 {
     public class BookingsController : ApiController
     {
-        private BookingDbContext db = new BookingDbContext();
-       // public IRepository<Booking> repo = new BookingRepository();
+
+        public IRepository<Booking> repo = new DllFacade().GetBookingManager();
 
         // GET: api/Bookings
-        public IQueryable<Booking> GetBookings()
+        public List<Booking> GetBookings()
         {
-            return db.Bookings;
+            return repo.ReadAll();
         }
 
         // GET: api/Bookings/5
         [ResponseType(typeof(Booking))]
         public IHttpActionResult GetBooking(int id)
         {
-            Booking booking = db.Bookings.Find(id);
+            Booking booking = repo.Read(id);
             if (booking == null)
             {
                 return NotFound();
@@ -52,23 +53,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(booking).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            repo.Update(booking);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -82,23 +67,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Bookings.Add(booking);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (BookingExists(booking.CustomerId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            repo.Create(booking);
 
             return CreatedAtRoute("DefaultApi", new { id = booking.CustomerId }, booking);
         }
@@ -107,30 +76,16 @@ namespace BookingApplicationWebApi.Controllers
         [ResponseType(typeof(Booking))]
         public IHttpActionResult DeleteBooking(int id)
         {
-            Booking booking = db.Bookings.Find(id);
+            Booking booking = repo.Read(id);
             if (booking == null)
             {
                 return NotFound();
             }
 
-            db.Bookings.Remove(booking);
-            db.SaveChanges();
+            repo.Delete(booking);
 
             return Ok(booking);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool BookingExists(int id)
-        {
-            return db.Bookings.Count(e => e.CustomerId == id) > 0;
-        }
     }
 }

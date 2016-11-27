@@ -7,6 +7,7 @@ using BookingApplicationWebApi;
 using DLL.DAL.Entities;
 using DLL.DAL.Managers;
 using DLL.Repositories;
+using DLL.DAL.Repositories;
 
 namespace DLL
 {
@@ -27,10 +28,10 @@ namespace DLL
             return new FootCareRepository();
         }
 
-        //public IRepository<Booking> GetBookingManager()
-        //{
-        //    return new BookingManager();
-        //}
+        public IRepository<Booking> GetBookingManager()
+        {
+            return new BookingRepository();
+        }
 
         public IRepository<Image> GetImageManager()
         {
