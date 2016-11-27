@@ -49,6 +49,7 @@ namespace DLL.DAL.Managers
 
         public List<Customer> ReadAll()
         {
+
             return customerRepo.ReadAll();
         }
 

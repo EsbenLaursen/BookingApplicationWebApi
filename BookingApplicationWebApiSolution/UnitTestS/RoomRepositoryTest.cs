@@ -54,7 +54,7 @@ namespace UnitTestS
         {
             IRepository<Room> repo = mock.Object;
             RoomManager rm = new RoomManager(repo);
-
+            
             Assert.IsNotNull(rm);
             Assert.AreEqual(0, rooms.Count);
         }

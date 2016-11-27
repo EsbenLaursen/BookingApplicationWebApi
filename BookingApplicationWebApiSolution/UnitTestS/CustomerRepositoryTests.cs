@@ -12,6 +12,7 @@ namespace UnitTestS
     [TestClass]
     public class CustomerRepositoryTests
     {
+
         private static IList<Customer> customers = new List<Customer>();
 
         private static Mock<IRepository<Customer>> mock;
