@@ -65,7 +65,7 @@ namespace DLL.DAL
             {
                 context.Rooms.Add(Room);
             }
-            foreach (Customer c in Customers)
+            foreach (var c in Customers)
             {
                 context.Customers.Add(c);
             }
