@@ -61,6 +61,7 @@
     <Compile Include="DAL\Entities\FootCare.cs" />
     <Compile Include="DAL\Entities\Image.cs" />
     <Compile Include="DAL\Entities\Room.cs" />
+    <Compile Include="DAL\Managers\BookingManager.cs" />
     <Compile Include="DAL\Managers\CustomerManager.cs" />
     <Compile Include="DAL\Managers\FootCareManager.cs" />
     <Compile Include="DAL\Managers\ImageManager.cs" />
