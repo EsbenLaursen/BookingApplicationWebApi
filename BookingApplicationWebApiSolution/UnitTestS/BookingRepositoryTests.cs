@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using DLL;
+using BookingApplicationWebApi;
 
 namespace UnitTestS
 {
