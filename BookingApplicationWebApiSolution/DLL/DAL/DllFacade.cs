@@ -17,7 +17,7 @@ namespace DLL
             return new RoomRepository();
         }
 
-        public IRepository<Customer> GetCustomerManager()
+        public IRepository<Customer> GetCustomerManager()       
         {
             return new CustomerRepository();
         }
