@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLL.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -13,7 +14,21 @@ namespace DLL.DAL
         {
             Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer<BookingDbContext>(new BookingDbInitializer());
+
         }
+
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<FootCare> FootCares { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
     }
+
+    //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    //{
+    //    modelBuilder.Entity<Customer>().HasRequired<Booking>(b => b.Bookings).WithMany(g => g.Genres);
+
+
+    //}
 
 }
