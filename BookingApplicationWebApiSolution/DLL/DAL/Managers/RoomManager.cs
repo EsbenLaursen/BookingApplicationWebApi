@@ -9,10 +9,8 @@ using DLL.Repositories;
 namespace DLL.DAL.Managers
 {
     public class RoomManager : IRepository<Room>
-
-        
     {
-        
+
         private IRepository<Room> rr;
 
         public RoomManager(IRepository<Room> repo)
@@ -29,7 +27,7 @@ namespace DLL.DAL.Managers
             {
                 throw new ArgumentNullException("Room already exists");
             }
-            
+
             return rr.Create(t);
         }
 
@@ -62,7 +60,8 @@ namespace DLL.DAL.Managers
             {
                 throw new ArgumentNullException("Room is null");
             }
-            if (rr.Read(t.Id) == null) {
+            if (rr.Read(t.Id) == null)
+            {
                 throw new ArgumentNullException("Room isnt in DB");
             }
             Room r = rr.Read(t.Id);
@@ -70,7 +69,7 @@ namespace DLL.DAL.Managers
             r.Description = t.Description;
             r.Price = t.Price;
             r.Persons = t.Persons;
-          
+
             return true;
 
         }
