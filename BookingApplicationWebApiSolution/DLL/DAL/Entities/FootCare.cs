@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL.DAL.Entities
 {
+    [Serializable]
     public class FootCare
     {
         public int Id { get; set; }

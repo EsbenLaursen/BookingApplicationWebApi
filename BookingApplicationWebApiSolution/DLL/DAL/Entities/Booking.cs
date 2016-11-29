@@ -6,6 +6,7 @@ using DLL.DAL.Entities;
 
 namespace BookingApplicationWebApi
 {
+    [Serializable]
     public class Booking
     {
         public int Id { get; set; }

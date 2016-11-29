@@ -7,6 +7,7 @@ using BookingApplicationWebApi;
 
 namespace DLL.DAL.Entities
 {
+    [Serializable]
     public class Room 
     {
         public int Id { get; set; }
