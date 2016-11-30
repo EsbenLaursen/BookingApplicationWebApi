@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace DLL.DAL.Entities
 {
-    [Serializable]
     public class Image
     {
         public int Id { get; set; }

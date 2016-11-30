@@ -10,8 +10,9 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using BookingApplicationWebApi;
 using DLL.DAL;
-using DLL.Repositories;
 using DLL;
+using DLL.DAL.Entities;
+using DLL.DAL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {

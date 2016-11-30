@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookingApplicationWebApi;
-using DLL.Repositories;
+using DLL.DAL.Entities;
+using DLL.DAL.Repositories;
 
 namespace DLL.DAL.Managers
 {

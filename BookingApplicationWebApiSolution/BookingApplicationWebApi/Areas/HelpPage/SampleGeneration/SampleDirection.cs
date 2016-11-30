@@ -1,4 +1,4 @@
-namespace BookingApplicationWebApi.Areas.HelpPage
+namespace BookingApplicationWebApi.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using DLL;
 using DLL.DAL;
 using DLL.DAL.Entities;
-using DLL.Repositories;
+using DLL.DAL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
