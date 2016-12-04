@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DLL.DAL;
 using DLL.DAL.Entities;
 
-namespace DLL.Repositories
+namespace DLL.DAL.Repositories
 {
     public class FootCareRepository : IRepository<FootCare>
     {

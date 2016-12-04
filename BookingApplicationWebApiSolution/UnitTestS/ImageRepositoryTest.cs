@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DLL.DAL.Entities;
 using DLL.DAL.Managers;
-using DLL.Repositories;
+using DLL.DAL.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

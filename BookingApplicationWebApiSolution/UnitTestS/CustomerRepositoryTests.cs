@@ -2,10 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DLL.DAL.Entities;
 using System.Collections.Generic;
-using DLL.Repositories;
-using Moq;
+    using Moq;
 using System.Linq;
 using DLL.DAL.Managers;
+    using DLL.DAL.Repositories;
 
 namespace UnitTestS
 {

@@ -13,6 +13,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using BookingApplicationWebApi.Areas.HelpPage.ModelDescriptions;
 using BookingApplicationWebApi.Areas.HelpPage.Models;
+using BookingApplicationWebApi.Areas.HelpPage.SampleGeneration;
 
 namespace BookingApplicationWebApi.Areas.HelpPage
 {
