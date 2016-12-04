@@ -1,10 +1,10 @@
 ﻿using DLL.DAL.Entities;
-using DLL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DLL.DAL.Repositories;
 
 namespace DLL.DAL.Managers
 {

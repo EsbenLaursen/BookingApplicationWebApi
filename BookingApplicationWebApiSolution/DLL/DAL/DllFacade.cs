@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookingApplicationWebApi;
-using DLL.DAL.Entities;
-using DLL.DAL.Managers;
-using DLL.Repositories;
+﻿using DLL.DAL.Entities;
 using DLL.DAL.Repositories;
 
-namespace DLL
+namespace DLL.DAL
 {
    public class DllFacade
     {

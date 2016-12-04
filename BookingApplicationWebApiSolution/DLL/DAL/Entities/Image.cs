@@ -9,7 +9,7 @@ using System.Web;
 
 namespace DLL.DAL.Entities
 {
-    [Serializable]
+    
     public class Image
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -1,5 +1,4 @@
-﻿using BookingApplicationWebApi;
-using DLL.DAL.Entities;
+﻿using DLL.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -44,11 +43,11 @@ namespace DLL.DAL
 
 
             Booking b1 = new Booking() { Id = 1, Breakfast = true, Customer = c1, EndDate = DateTime.Now.AddDays(2), StartDate = DateTime.Now.AddDays(1), Room = new List<Room>{ r1, r2 } };
-            Booking b2 = new Booking() { Id = 2, Breakfast = true, Customer = c5, EndDate = DateTime.Now.AddDays(2), StartDate = DateTime.Now.AddDays(1), Room = new List<Room> { r1, r2 } };
-            Booking b3 = new Booking() { Id = 3, Breakfast = false, Customer = c2, EndDate = DateTime.Now.AddDays(23), StartDate = DateTime.Now.AddDays(-2), Room = new List<Room> { r4 } };
-            Booking b4 = new Booking() { Id = 4, Breakfast = true, Customer = c3, EndDate = DateTime.Now.AddDays(5), StartDate = DateTime.Now.AddDays(-2), Room = new List<Room> { r3 } };
-            Booking b5 = new Booking() { Id = 5, Breakfast = false, Customer = c5, EndDate = DateTime.Now.AddDays(11), StartDate = DateTime.Now.AddDays(-2), Room = new List<Room> { r3, r4, r1 } };
-            Booking b6 = new Booking() { Id = 6, Breakfast = false, Customer = c1, EndDate = DateTime.Now.AddDays(6), StartDate = DateTime.Now.AddDays(-2), Room = new List<Room>{ r2, r3 } };
+            Booking b2 = new Booking() { Id = 2, Breakfast = true, Customer = c5, EndDate = DateTime.Now.AddDays(8), StartDate = DateTime.Now.AddDays(5), Room = new List<Room> { r1, r2 } };
+            Booking b3 = new Booking() { Id = 3, Breakfast = false, Customer = c2, EndDate = DateTime.Now.AddDays(23), StartDate = DateTime.Now.AddDays(20), Room = new List<Room> { r4 } };
+            Booking b4 = new Booking() { Id = 4, Breakfast = true, Customer = c3, EndDate = DateTime.Now.AddDays(55), StartDate = DateTime.Now.AddDays(50), Room = new List<Room> { r3 } };
+            Booking b5 = new Booking() { Id = 5, Breakfast = false, Customer = c5, EndDate = DateTime.Now.AddDays(30), StartDate = DateTime.Now.AddDays(28), Room = new List<Room> { r3, r4, r1 } };
+            Booking b6 = new Booking() { Id = 6, Breakfast = false, Customer = c1, EndDate = DateTime.Now.AddDays(100), StartDate = DateTime.Now.AddDays(80), Room = new List<Room>{ r2, r3 } };
             Bookings.Add(b1);
             Bookings.Add(b2);
             Bookings.Add(b3);

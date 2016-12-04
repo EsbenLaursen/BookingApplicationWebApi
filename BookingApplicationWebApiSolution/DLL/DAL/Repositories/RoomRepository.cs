@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DLL.DAL.Entities;
-using DLL.DAL;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using DLL.DAL.Entities;
 
-namespace DLL.Repositories
+namespace DLL.DAL.Repositories
 {
     public class RoomRepository : IRepository<Room>
     {
