@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using DLL.DAL.Entities;
 
-namespace BookingApplicationWebApi
+namespace DLL.DAL.Entities
 {
-
+    [Serializable]
     public class Booking
     {
         public int Id { get; set; }
