@@ -7,7 +7,7 @@ using BookingApplicationWebApi;
 
 namespace DLL.DAL.Entities
 {
-    [Serializable]
+
     public class Customer
     {
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace DLL.DAL.Entities
         public string PhoneNr { get; set; }
 
 
-        public virtual Booking Booking { get; set; }
+        public Booking Booking { get; set; }
     }
 }
