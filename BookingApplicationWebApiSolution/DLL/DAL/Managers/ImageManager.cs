@@ -23,7 +23,7 @@ namespace DLL.DAL.Managers
         }
         public Image Create(Image t)
         {
-            if (ri.Read(t.Id) != null)
+            if (ri.Read(t.ImageId) != null)
             {
                 throw new ArgumentException("Image already exist");
             }
@@ -32,7 +32,7 @@ namespace DLL.DAL.Managers
 
         public bool Delete(Image t)
         {
-            if (ri.Read(t.Id) == null)
+            if (ri.Read(t.ImageId) == null)
             {
                 throw new ArgumentNullException("Image doesn't exist");
             }
@@ -54,21 +54,24 @@ namespace DLL.DAL.Managers
             return ri.ReadAll();
         }
 
+
+
         public bool Update(Image t)
         {
             if (t == null)
             {
                 throw new ArgumentNullException("Image is null");
             }
-            if (ri.Read(t.Id) == null)
+            if (ri.Read(t.ImageId) == null)
             {
                 throw new ArgumentNullException("Image isnt in DB");
             }
-            Image i = ri.Read(t.Id);
-            i.Name = t.Name;
-            i.Description = t.Description;
+            Image i = ri.Read(t.ImageId);
+            i.FileName = t.FileName;
 
-            return true;
+           return true;
         }
+
+      
     }
 }

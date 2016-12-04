@@ -36,7 +36,7 @@ namespace DLL.Repositories
         {
             using (var ctx = new BookingDbContext())
             {
-                return ctx.Images.FirstOrDefault(x => x.Id == id);
+                return ctx.Images.FirstOrDefault(x => x.ImageId == id);
             }
         }
 

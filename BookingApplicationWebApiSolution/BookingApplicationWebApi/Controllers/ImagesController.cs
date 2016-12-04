@@ -47,7 +47,7 @@ namespace BookingApplicationWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != image.Id)
+            if (id != image.ImageId)
             {
                 return BadRequest();
             }
@@ -67,7 +67,7 @@ namespace BookingApplicationWebApi.Controllers
 
             repo.Create(image);
 
-            return CreatedAtRoute("DefaultApi", new { id = image.Id }, image);
+            return CreatedAtRoute("DefaultApi", new { id = image.ImageId }, image);
         }
 
         // DELETE: api/Images/5
