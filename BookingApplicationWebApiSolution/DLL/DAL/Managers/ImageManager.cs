@@ -67,7 +67,7 @@ namespace DLL.DAL.Managers
                 throw new ArgumentNullException("Image isnt in DB");
             }
             Image i = ri.Read(t.ImageId);
-            i.FileName = t.FileName;
+            i.ImageFileName = t.ImageFileName;
 
            return true;
         }

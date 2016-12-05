@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "UploadImage";
+}
+<body>
+    <h2>Upload Image</h2>
+<div id="UploadPictureForm">
+    @using (Html.BeginForm("UploadImage", "Image", FormMethod.Post, new {@enctype = "multipart/form-data", id = "ProfilePictureForm"}))
+    {
+        <div id="errorMessage"></div>
+        <input style="cursor: pointer;" type="file" id="file"/><br />
+        <input type ="submit" style="cursor: pointer; margin-top:30px;" id="upload" value="upload"/>
+
+    }
+    
+</div>
+    @*@Html.ActionLink("Click to render Image", "RenderImageBytes")*@
+</body>

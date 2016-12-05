@@ -86,7 +86,7 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
 
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
             im.Create(i);
 
             Assert.AreEqual(i, im.Read(1));
@@ -106,7 +106,7 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
 
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
             im.Create(i);
 
             try
@@ -132,9 +132,9 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
 
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
 
-            Image ii = new Image() { ImageId = 2, FileName = "Image" };
+            Image ii = new Image() { ImageId = 2, ImageFileName = "Image" };
 
             im.Create(i);
             im.Create(ii);
@@ -159,9 +159,9 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
 
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
 
-            Image ii = new Image() { ImageId = 2, FileName = "Image" };
+            Image ii = new Image() { ImageId = 2, ImageFileName = "Image" };
 
             im.Create(i);
 
@@ -186,9 +186,9 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
 
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
 
-            Image ii = new Image() { ImageId = 2, FileName = "Image" };
+            Image ii = new Image() { ImageId = 2, ImageFileName = "Image" };
 
             im.Create(i);
             im.Create(ii);
@@ -211,9 +211,9 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
 
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
 
-            Image ii = new Image() { ImageId = 2, FileName = "Image" };
+            Image ii = new Image() { ImageId = 2, ImageFileName = "Image" };
 
             im.Create(i);
             im.Create(ii);
@@ -233,15 +233,15 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
             //Create and adds the room
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
             im.Create(i);
 
-            Image ii = new Image() { ImageId = 1, FileName = "Image2" };
+            Image ii = new Image() { ImageId = 1, ImageFileName = "Image2" };
 
             bool isUpdated = im.Update(ii);
 
             Assert.AreEqual(true, isUpdated);
-            Assert.AreEqual(i.FileName, ii.FileName);
+            Assert.AreEqual(i.ImageFileName, ii.ImageFileName);
            Assert.AreEqual(i.ImageId, ii.ImageId);
         }
 
@@ -257,7 +257,7 @@ namespace UnitTestS
             ImageManager im = new ImageManager(repo);
 
             //Create room
-            Image i = new Image() { ImageId = 1, FileName = "Image" };
+            Image i = new Image() { ImageId = 1, ImageFileName = "Image" };
             //try update the room which doesnt exist
             im.Update(i);
 

@@ -1,6 +1,7 @@
 ﻿using DLL.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
@@ -17,7 +18,6 @@ namespace DLL.DAL
             Database.SetInitializer<BookingDbContext>(new BookingDbInitializer());
 
         }
-
         public DbSet<Image> Images { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Customer> Customers { get; set; }
