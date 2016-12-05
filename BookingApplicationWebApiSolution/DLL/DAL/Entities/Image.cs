@@ -19,8 +19,8 @@ namespace DLL.DAL.Entities
         public int ImageSize { get; set; }
         public byte[] ImageData { get; set; }
 
-        [Required(ErrorMessage="Please select Image file")]
-        public HttpPostedFileBase File { get; set; }
+        //[Required(ErrorMessage="Please select Image file")]
+        //public HttpPostedFileBase File { get; set; }
 
     }
 }

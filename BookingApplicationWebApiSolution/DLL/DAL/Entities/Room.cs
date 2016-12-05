@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookingApplicationWebApi;
 
 namespace DLL.DAL.Entities
 {
@@ -15,6 +14,6 @@ namespace DLL.DAL.Entities
         public string Description { get; set; }
         public int Persons { get; set; }
 
-        public Booking Booking { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }

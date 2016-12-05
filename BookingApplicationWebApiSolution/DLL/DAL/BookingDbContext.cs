@@ -27,18 +27,11 @@ namespace DLL.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Configure CustomerId as PK for Booking
-            modelBuilder.Entity<Booking>()
-                .HasKey(e => e.CustomerId);
+            modelBuilder.Entity<Booking>().HasRequired(c => c.Customer).WithOptional(b => b.Booking);
 
-            // Configure Customer as FK for Booking
-            modelBuilder.Entity<Customer>()
-                .HasRequired(s => s.Booking)
-                .WithRequiredPrincipal(ad => ad.Customer);
+            modelBuilder.Entity<Booking>().HasMany(r => r.Room).WithMany(b => b.Bookings);
 
-
-            //Configure 1-many relation between Room and Booking
-            modelBuilder.Entity<Room>().HasOptional<Booking>(s => s.Booking).WithMany(o => o.Room);
+          
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
