@@ -44,7 +44,7 @@ namespace DLL.DAL
             Room r1 = new Room() { Id = 1, Description = "Beutiful room", Name="Living room", Persons=3, Price=500, Booking=null};
             Room r2 = new Room() { Id = 2, Description = "Gross room", Name = "Bathroom", Persons = 1, Price = 600, Booking = null };
             Room r3 = new Room() { Id = 3, Description = "putirovroom", Name = "Bed room", Persons = 3, Price = 700, Booking = null };
-            Room r4 = new Room() { Id = 4, Description = "Room for everybody", Name = "Multitranssexual room", Persons = 23, Price = 2000, Booking = null };
+            Room r4 = new Room() { Id = 4, Description = "Room for everybody", Name = "vroom vroom", Persons = 23, Price = 2000, Booking = null };
             Rooms.Add(r1);
             Rooms.Add(r2);
             Rooms.Add(r3);
