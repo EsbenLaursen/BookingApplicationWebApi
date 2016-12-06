@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
+using System.Linq;
+using System.Web;
 
-
-namespace DLL.DAL.Entities
+namespace BookingApplicationWebApi.Models
 {
-
-    public class Image
+    public class Photo
     {
         public int ImageId { get; set; }
         public string PublicId { get; set; }
@@ -18,5 +14,6 @@ namespace DLL.DAL.Entities
         public string SecureUrl { get; set; }
         public string Path { get; set; }
         public string Type { get; set; }
+        public string Format { get; set; }
     }
 }

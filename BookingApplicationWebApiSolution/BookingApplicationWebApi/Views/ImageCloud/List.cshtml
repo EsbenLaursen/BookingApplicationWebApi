@@ -1,0 +1,75 @@
+﻿<h1>Your Images</h1>
+<div class="actions">
+    <a class="upload_link" href="~/ImageCloud/Upload">Add photo...</a>
+    <a class="upload_link" href="~/ImageCloud/UploadDirectly">Add photo (direct upload)...</a>
+    <a class="upload_link" href="~/Image/UploadDirectlyUnsigned">Add photo (direct unsigned upload)...</a>
+</div>
+<div class="images">
+@if (Model.Image.Count != 0)
+{
+    foreach (BookingApplicationWebApi.Models.Photo img in @Model.Photos)
+    {
+        @:<div class="image">
+        <a href="@Model.Cloudinary.Api.UrlImgUp.Format(img.Format).BuildUrl(img.PublicId)"
+           target="_blank" class="public_id_link">
+            <div class="public_id">
+                @img.PublicId
+            </div>
+            @Model.Cloudinary.Api.UrlImgUp.Format("jpg").Transform(new CloudinaryDotNet.Transformation().Height(150).Width(150).Crop("fill")).BuildImageTag(img.PublicId, new CloudinaryDotNet.StringDictionary("class=thumbnail inline"))
+        </a>
+
+
+        CloudinaryDotNet.Transformation basicTransform = new CloudinaryDotNet.Transformation().Height(150).Width(150);
+        CloudinaryDotNet.Url basicUrl = Model.Cloudinary.Api.UrlImgUp.Format("jpg");
+        List<CloudinaryDotNet.Url> urls = new List<CloudinaryDotNet.Url>()
+        {
+            basicUrl.Clone().Transform(basicTransform.Clone().Crop("fill").Radius(10)),
+            basicUrl.Clone().Transform(basicTransform.Clone().Crop("scale")),
+            basicUrl.Clone().Format("png").Transform(basicTransform.Clone().Crop("fit")),
+            basicUrl.Clone().Transform(basicTransform.Clone().Crop("thumb").Gravity("face")),
+            basicUrl.Clone().Format("png").Transform(basicTransform.Clone().Width(150).Height(150).Crop("fill").Gravity("north").Effect("sepia").Chain().Angle(20))
+        };
+        foreach (var url in urls)
+        {
+            <td>
+                <div class="thumbnail_holder">
+                    <a target="_blank" href="@url.BuildUrl(img.PublicId)">
+                        @url.BuildImageTag(img.PublicId, new CloudinaryDotNet.StringDictionary("class=thumbnail inline"))
+                    </a>
+                </div>
+                <br/>
+                <table class='info'>
+                    <tr>
+                        <td>format</td>
+                        <td>@url.FormatValue</td>
+                    </tr>
+                    @foreach (var param in url.Transformation.Params)
+                    {
+                        <tr>
+                            <td>@param.Key</td>
+                            <td>@param.Value</td>
+                        </tr>
+                    }
+                    @foreach (var nestedTransform in url.Transformation.NestedTransforms)
+                    {
+                        <tr>
+                            <td>nested</td>
+                            <td>
+                                @foreach (var param in nestedTransform.Params)
+                                {
+                                    @String.Format("{0}: {1}", param.Key, param.Value);<br/>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        }
+        @:}
+
+    }
+}
+else
+{
+    <p>No Images were uploaded yet.</p>
+}</div>
