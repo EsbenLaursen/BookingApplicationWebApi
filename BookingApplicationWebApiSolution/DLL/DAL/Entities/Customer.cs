@@ -14,8 +14,6 @@ namespace DLL.DAL.Entities
         public string Lastname { get; set; }
         public string Email { get; set; }
         public string PhoneNr { get; set; }
-
-
         public Booking Booking { get; set; }
     }
 }
