@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DLL.DAL.Entities
 {
-    [Serializable]
+
     public class Booking
     {
         public int Id { get; set; }

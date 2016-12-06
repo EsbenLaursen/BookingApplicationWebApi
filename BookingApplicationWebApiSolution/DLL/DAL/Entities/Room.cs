@@ -14,6 +14,6 @@ namespace DLL.DAL.Entities
         public string Description { get; set; }
         public int Persons { get; set; }
 
-        public Booking Booking { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }
