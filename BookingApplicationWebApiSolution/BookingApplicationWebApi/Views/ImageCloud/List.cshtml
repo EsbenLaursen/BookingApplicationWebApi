@@ -1,14 +1,16 @@
-﻿<h1>Your Images</h1>
+﻿@model BookingApplicationWebApi.Models.PhotosModel
+
+<h1>Your Images</h1>
 <div class="actions">
     <a class="upload_link" href="~/ImageCloud/Upload">Add photo...</a>
-    <a class="upload_link" href="~/ImageCloud/UploadDirectly">Add photo (direct upload)...</a>
-    <a class="upload_link" href="~/Image/UploadDirectlyUnsigned">Add photo (direct unsigned upload)...</a>
 </div>
 <div class="images">
-@if (Model.Image.Count != 0)
+@if (Model.Images != null)
 {
-    foreach (BookingApplicationWebApi.Models.Photo img in @Model.Photos)
+    var uploaded = false;
+    foreach (var img in @Model.Images)
     {
+        uploaded = true;
         @:<div class="image">
         <a href="@Model.Cloudinary.Api.UrlImgUp.Format(img.Format).BuildUrl(img.PublicId)"
            target="_blank" class="public_id_link">
@@ -68,8 +70,9 @@
         @:}
 
     }
+    if (uploaded == false)
+    {
+        <p>No Images were uploaded yet.</p>
+    }
 }
-else
-{
-    <p>No Images were uploaded yet.</p>
-}</div>
+</div>

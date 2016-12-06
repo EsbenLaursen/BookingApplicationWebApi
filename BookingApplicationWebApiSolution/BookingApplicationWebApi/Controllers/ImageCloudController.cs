@@ -23,7 +23,7 @@ namespace BookingApplicationWebApi.Controllers
             
 
             BookingDbContext album = new BookingDbContext();
-            album.Database.Initialize(false);
+            //album.Database.Initialize(false);
 
             Account acc = new Account(
                     "emildall",
@@ -32,7 +32,7 @@ namespace BookingApplicationWebApi.Controllers
 
             m_cloudinary = new Cloudinary(acc);
         }
-
+        
         public ActionResult Index()
         {
             BookingDbContext album = new BookingDbContext();

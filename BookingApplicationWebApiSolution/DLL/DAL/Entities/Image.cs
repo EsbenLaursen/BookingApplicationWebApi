@@ -18,5 +18,6 @@ namespace DLL.DAL.Entities
         public string SecureUrl { get; set; }
         public string Path { get; set; }
         public string Type { get; set; }
+        public string Format { get; set; }
     }
 }
