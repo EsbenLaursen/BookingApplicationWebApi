@@ -18,6 +18,37 @@ namespace DLL.DAL
             List<Image> Images = new List<Image>();
             List<Room> Rooms = new List<Room>();
 
+            Image i1 = new Image() { ImageId = 1, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i2 = new Image() { ImageId = 2, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i3 = new Image() { ImageId = 3, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i4 = new Image() { ImageId = 4, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i5 = new Image() { ImageId = 5, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i10 = new Image() { ImageId = 6, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i6 = new Image() { ImageId = 7, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i7 = new Image() { ImageId = 8, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i8 = new Image() { ImageId = 9, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i9 = new Image() { ImageId = 10, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Images.Add(i1);
+            Images.Add(i2);
+            Images.Add(i3);
+            Images.Add(i4);
+            Images.Add(i5);
+            Images.Add(i6);
+            Images.Add(i7);
+            Images.Add(i8);
+            Images.Add(i9);
+            Images.Add(i10);
+
+
+
+            FootCare f1 = new FootCare() {Id = 1, Name = "Massage", Price = 100, Description = "zzZzz"};
+            FootCare f2 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
+            FootCare f3 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
+            FootCare f4 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
+            Footcares.Add(f1);
+            Footcares.Add(f2);
+            Footcares.Add(f3);
+            Footcares.Add(f4);
 
             Customer c1 = new Customer() { Id = 1, Firstname = "Kenny", Lastname = "kühl", Email = "Kuhlefar@gmail.com", PhoneNr = "329573402" };
             Customer c2 = new Customer() { Id = 2, Firstname = "Anders", Lastname = "Rictra", Email = "AGMAM@gmail.com", PhoneNr = "43562362" };
@@ -50,6 +81,11 @@ namespace DLL.DAL
             Bookings.Add(b3);
             Bookings.Add(b4);
             Bookings.Add(b5);
+
+            foreach (var Image in Images)   
+            {
+                context.Images.Add(Image);
+            }
 
 
 
