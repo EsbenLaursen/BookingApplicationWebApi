@@ -5,6 +5,10 @@ namespace DLL.DAL
 {
    public class DllFacade
     {
+        public IRepository<TemporaryBooking> GetTempBookingManager()
+        {
+            return new TempBookingRepository();
+        }
         public IRepository<Room> GetRoomManager()
         {
             return new RoomRepository();

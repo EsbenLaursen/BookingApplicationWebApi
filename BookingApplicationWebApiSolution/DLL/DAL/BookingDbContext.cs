@@ -18,6 +18,7 @@ namespace DLL.DAL
             Database.SetInitializer<BookingDbContext>(new BookingDbInitializer());
 
         }
+        public DbSet<TemporaryBooking> TempBookings { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Customer> Customers { get; set; }
