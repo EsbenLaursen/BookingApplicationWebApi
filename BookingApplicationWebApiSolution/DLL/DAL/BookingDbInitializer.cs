@@ -18,15 +18,6 @@ namespace DLL.DAL
             List<Image> Images = new List<Image>();
             List<Room> Rooms = new List<Room>();
 
-            FootCare f1 = new FootCare() {Id = 1, Name = "Massage", Price = 100, Description = "zzZzz"};
-            FootCare f2 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            FootCare f3 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            FootCare f4 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            Footcares.Add(f1);
-            Footcares.Add(f2);
-            Footcares.Add(f3);
-            Footcares.Add(f4);
-
 
             Customer c1 = new Customer() { Id = 1, Firstname = "Kenny", Lastname = "kühl", Email = "Kuhlefar@gmail.com", PhoneNr = "329573402" };
             Customer c2 = new Customer() { Id = 2, Firstname = "Anders", Lastname = "Rictra", Email = "AGMAM@gmail.com", PhoneNr = "43562362" };
@@ -49,10 +40,10 @@ namespace DLL.DAL
             Rooms.Add(r3);
 
 
-            Booking b1 = new Booking() { Id = 1, Breakfast = true, Customer = c1, EndDate = DateTime.Now.AddDays(2), StartDate = DateTime.Now.AddDays(1), Room = new List<Room>{ r1, r2 } };
-            Booking b2 = new Booking() { Id = 2, Breakfast = true, Customer = c5, EndDate = DateTime.Now.AddDays(8), StartDate = DateTime.Now.AddDays(5), Room = new List<Room> { r1, r2 } };
-            Booking b3 = new Booking() { Id = 3, Breakfast = false, Customer = c2, EndDate = DateTime.Now.AddDays(23), StartDate = DateTime.Now.AddDays(20), Room = new List<Room> { r3 } };
-            Booking b4 = new Booking() { Id = 4, Breakfast = true, Customer = c3, EndDate = DateTime.Now.AddDays(55), StartDate = DateTime.Now.AddDays(50), Room = new List<Room> { r3 } };
+            Booking b1 = new Booking() { Id = 1, Breakfast = true, Customer = c1, EndDate = DateTime.Now.AddDays(2), StartDate = DateTime.Now.AddDays(1), Room = new List<Room>{ r1, r2, r3 } };
+            Booking b2 = new Booking() { Id = 2, Breakfast = true, Customer = c5, EndDate = DateTime.Now.AddDays(8), StartDate = DateTime.Now.AddDays(5), Room = new List<Room> { r1, r2, r3 } };
+            Booking b3 = new Booking() { Id = 3, Breakfast = false, Customer = c2, EndDate = DateTime.Now.AddDays(23), StartDate = DateTime.Now.AddDays(20), Room = new List<Room> { r1, r2, r3 } };
+            Booking b4 = new Booking() { Id = 4, Breakfast = true, Customer = c3, EndDate = DateTime.Now.AddDays(55), StartDate = DateTime.Now.AddDays(50), Room = new List<Room> { r1, r2, r3 } };
             Booking b5 = new Booking() { Id = 5, Breakfast = false, Customer = c5, EndDate = DateTime.Now.AddDays(30), StartDate = DateTime.Now.AddDays(28), Room = new List<Room> { r3, r2, r1 } };
             Bookings.Add(b1);
             Bookings.Add(b2);
@@ -61,11 +52,7 @@ namespace DLL.DAL
             Bookings.Add(b5);
 
 
-            foreach (var FootCare in Footcares)
-            {
-                context.FootCares.Add(FootCare);
-            }
-        
+
             foreach (var Booking in Bookings)
             {
                 context.Bookings.Add(Booking);
