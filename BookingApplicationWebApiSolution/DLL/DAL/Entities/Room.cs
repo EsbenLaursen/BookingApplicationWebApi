@@ -15,5 +15,6 @@ namespace DLL.DAL.Entities
         public int Persons { get; set; }
 
         public List<Booking> Bookings { get; set; }
+        public List<TemporaryBooking> TemporaryBookings { get; set; }
     }
 }

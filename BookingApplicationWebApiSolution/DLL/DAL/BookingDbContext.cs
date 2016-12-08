@@ -31,8 +31,8 @@ namespace DLL.DAL
             modelBuilder.Entity<Booking>().HasRequired(c => c.Customer).WithOptional(b => b.Booking);
 
             modelBuilder.Entity<Booking>().HasMany(r => r.Room).WithMany(b => b.Bookings);
+            modelBuilder.Entity<TemporaryBooking>().HasMany(r => r.Rooms).WithMany(b => b.TemporaryBookings);
 
-          
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
