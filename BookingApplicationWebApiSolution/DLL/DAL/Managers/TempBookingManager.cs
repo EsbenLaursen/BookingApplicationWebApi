@@ -28,6 +28,10 @@ namespace DLL.DAL.Managers
                 {
                     throw new ArgumentException("TempBooking already exist");
                 }
+                if (t.Rooms == null || t.Rooms.Count <1)
+                {
+                    throw new ArgumentException("No rooms in temp booking");
+                }
                 return tb.Create(t);
             }
         }

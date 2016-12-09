@@ -15,6 +15,11 @@ namespace DLL.DAL.Repositories
             using (var ctx = new BookingDbContext())
             {
                 TemporaryBooking r = ctx.TempBookings.Add(t);
+                
+                foreach (var room in t.Rooms)
+                {
+                    ctx.Entry(room).State = EntityState.Unchanged;
+                }
                 ctx.SaveChanges();
                 return r;
             }
