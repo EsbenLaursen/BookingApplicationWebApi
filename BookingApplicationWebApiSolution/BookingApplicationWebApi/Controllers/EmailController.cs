@@ -25,7 +25,7 @@ namespace BookingApplicationWebApi.Controllers
                 var message = new MailMessage();
                 message.To.Add(new MailAddress("ag-mam@live.dk"));  // replace with valid value 
                 message.From = new MailAddress(model.FromEmail);  // replace with valid value
-                message.Subject = "new booking";
+                message.Subject = model.Subject;
                 message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
                 message.IsBodyHtml = true;
 
