@@ -8,7 +8,7 @@ using DLL.DAL.Repositories;
 
 namespace DLL.DAL.Managers
 {
-    class TempBookingManager : IRepository<TemporaryBooking>
+    public class TempBookingManager : IRepository<TemporaryBooking>
     {
         private IRepository<TemporaryBooking> tb;
 
