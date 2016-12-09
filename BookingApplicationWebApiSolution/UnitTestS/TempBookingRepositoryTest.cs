@@ -72,8 +72,9 @@ namespace UnitTestS
             {
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
-
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
                 tbm.Create(tb);
 
                 Assert.AreEqual(tb, tbm.Read(1));
@@ -92,7 +93,9 @@ namespace UnitTestS
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
 
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
                 tbm.Create(tb);
 
                 try
@@ -117,8 +120,11 @@ namespace UnitTestS
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
 
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
-                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
+                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
 
                 tbm.Create(tb);
                 tbm.Create(tbb);
@@ -142,8 +148,11 @@ namespace UnitTestS
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
 
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
-                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
+                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
 
                 tbm.Create(tb);
 
@@ -167,8 +176,11 @@ namespace UnitTestS
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
 
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
-                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
+                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
 
                 tbm.Create(tb);
                 tbm.Create(tbb);
@@ -190,8 +202,11 @@ namespace UnitTestS
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
 
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
-                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
+                TemporaryBooking tbb = new TemporaryBooking() { Id = 2, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
 
                 tbm.Create(tb);
                 tbm.Create(tbb);
@@ -206,16 +221,20 @@ namespace UnitTestS
                 IRepository<TemporaryBooking> repo = mock.Object;
                 TempBookingManager tbm = new TempBookingManager(repo);
 
-                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                var rooms = new List<Room>();
+                rooms.Add(new Room());
+
+                TemporaryBooking tb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now, Rooms = rooms};
                 tbm.Create(tb);
-                TemporaryBooking tbb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now };
+                TemporaryBooking tbb = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now.AddDays(1), Rooms = rooms};
 
                 bool isUpdated = tbm.Update(tbb);
+                TemporaryBooking Updated = tbm.Read(1);
 
                 Assert.AreEqual(true, isUpdated);
-                Assert.AreEqual(tb.StartDate, tbb.StartDate);
-                Assert.AreEqual(tb.EndDate, tbb.EndDate);
-                Assert.AreEqual(tb.Id, tbb.Id);
+                Assert.AreEqual(Updated.StartDate, tbb.StartDate);
+                Assert.AreEqual(Updated.EndDate, tbb.EndDate);
+                Assert.AreEqual(Updated.Id, tbb.Id);
             }
         }
     }
