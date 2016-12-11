@@ -17,5 +17,7 @@ namespace DLL.DAL.Entities
         [Required]
         public string Message { get; set; }
 
+        public string Subject { get; set; }
+
     }
 }
