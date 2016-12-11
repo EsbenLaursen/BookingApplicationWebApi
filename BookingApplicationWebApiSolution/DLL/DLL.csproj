@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckRoomAvailability.cs" />
     <Compile Include="DAL\BookingDbContext.cs" />
     <Compile Include="DAL\BookingDbInitializer.cs" />
     <Compile Include="DAL\Entities\Booking.cs" />
