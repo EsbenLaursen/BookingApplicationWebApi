@@ -17,6 +17,10 @@ namespace DLL.DAL
             List<Booking> Bookings = new List<Booking>();
             List<Image> Images = new List<Image>();
             List<Room> Rooms = new List<Room>();
+            List<TemporaryBooking> TemporaryBooking = new List<TemporaryBooking>();
+
+            
+
 
             Image i1 = new Image() { ImageId = 1, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i2 = new Image() { ImageId = 2, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
@@ -70,6 +74,12 @@ namespace DLL.DAL
             Rooms.Add(r2);
             Rooms.Add(r3);
 
+            TemporaryBooking tb1 = new TemporaryBooking() { Id = 1, CustomerEmail = "dad@gm.com", CustomerFirstname = "xD", CustomerLastname = "dad", EndDate = DateTime.Now, StartDate = DateTime.Now, Rooms = new List<Room> { r2 } };
+            TemporaryBooking tb2 = new TemporaryBooking() { Id = 2, CustomerEmail = "emdail@gm.com", CustomerFirstname = "fgt", CustomerLastname = "Yourmom", EndDate = DateTime.Now, StartDate = DateTime.Now, Rooms = new List<Room> {r1} };
+            TemporaryBooking.Add(tb1);
+            TemporaryBooking.Add(tb2);
+
+
 
             Booking b1 = new Booking() { Id = 1, Breakfast = true, Customer = c1, EndDate = DateTime.Now.AddDays(2), StartDate = DateTime.Now.AddDays(1), Room = new List<Room>{ r1, r2, r3 } };
             Booking b2 = new Booking() { Id = 2, Breakfast = true, Customer = c5, EndDate = DateTime.Now.AddDays(8), StartDate = DateTime.Now.AddDays(5), Room = new List<Room> { r1, r2, r3 } };
@@ -85,6 +95,10 @@ namespace DLL.DAL
             foreach (var Image in Images)   
             {
                 context.Images.Add(Image);
+            }
+            foreach (var tempbook in TemporaryBooking)
+            {
+                context.TempBookings.Add(tempbook);
             }
 
 
