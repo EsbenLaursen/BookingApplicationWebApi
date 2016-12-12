@@ -45,10 +45,14 @@ namespace DLL.DAL
             FootCare f2 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
             FootCare f3 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
             FootCare f4 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
+            FootCare f5 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
+            FootCare f6 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
             Footcares.Add(f1);
             Footcares.Add(f2);
             Footcares.Add(f3);
             Footcares.Add(f4);
+            Footcares.Add(f5);
+            Footcares.Add(f6);
 
             Customer c1 = new Customer() { Id = 1, Firstname = "Kenny", Lastname = "kühl", Email = "Kuhlefar@gmail.com", PhoneNr = "329573402" };
             Customer c2 = new Customer() { Id = 2, Firstname = "Anders", Lastname = "Rictra", Email = "AGMAM@gmail.com", PhoneNr = "43562362" };
@@ -87,7 +91,10 @@ namespace DLL.DAL
                 context.Images.Add(Image);
             }
 
-
+            foreach (var Footcare in Footcares)
+            {
+                context.FootCares.Add(Footcare);
+            }
 
             foreach (var Booking in Bookings)
             {
