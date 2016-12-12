@@ -15,6 +15,10 @@ namespace DLL.DAL.Repositories
             using (var ctx = new BookingDbContext())
             {
                 Booking r = ctx.Bookings.Add(t);
+                foreach (var room in t.Room)
+                {
+                    ctx.Entry(room).State = EntityState.Unchanged;
+                }
                 ctx.SaveChanges();
                 return r;
             }

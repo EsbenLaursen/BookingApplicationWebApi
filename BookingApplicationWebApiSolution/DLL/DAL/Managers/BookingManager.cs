@@ -26,6 +26,10 @@ namespace DLL.DAL.Managers
             {
                 throw new ArgumentException("Booking already exist");
             }
+            if (t.Room == null || t.Room.Count < 1)
+            {
+                throw new ArgumentException("No rooms in booking");
+            }
             return bookingRepo.Create(t);
         }
 
