@@ -109,6 +109,27 @@ namespace UnitTestS
                     Assert.AreEqual(tb, tbm.Read(1));
                 }
             }
+            [TestMethod]
+            public void AddBookingNoRoomsTest()
+            {
+                IRepository<TemporaryBooking> repo = mock.Object;
+                var bm = new TempBookingManager(repo);
+
+
+
+                var b = new TemporaryBooking() { Id = 1, StartDate = DateTime.Today, EndDate = DateTime.Now};
+
+                try
+                {
+                    bm.Create(b); // try to add the same booking again
+                    Assert.Fail("Added booking with no rooms to repository");
+                }
+                catch (ArgumentException)
+                {
+                    Assert.AreEqual(0, tempbooking.Count);
+                    Assert.AreEqual(null, bm.Read(1));
+                }
+            }
 
             /// <summary>
             /// Test method testing removal of an existing booking remove.

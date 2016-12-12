@@ -70,8 +70,9 @@ namespace UnitTestS
         {
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
-
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now};
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms};
             bm.Create(b);
 
             Assert.AreEqual(b, bm.Read(1));
@@ -90,7 +91,10 @@ namespace UnitTestS
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
 
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now};
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
+
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
             bm.Create(b);
 
             try
@@ -104,6 +108,27 @@ namespace UnitTestS
                 Assert.AreEqual(b, bm.Read(1));
             }
         }
+        [TestMethod]
+        public void AddBookingNoRoomsTest()
+        {
+            IRepository<Booking> repo = mock.Object;
+            BookingManager bm = new BookingManager(repo);
+
+       
+
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now};
+
+            try
+            {
+                bm.Create(b); // try to add the same booking again
+                Assert.Fail("Added booking with no rooms to repository");
+            }
+            catch (ArgumentException)
+            {
+                Assert.AreEqual(0, bookings.Count);
+                Assert.AreEqual(null, bm.Read(1));
+            }
+        }
 
         /// <summary>
         /// Test method testing removal of an existing booking remove.
@@ -112,11 +137,14 @@ namespace UnitTestS
         [TestMethod]
         public void RemoveBookingExistingBokingTest()
         {
+
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
 
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now };
-            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now };
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
+            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
 
             bm.Create(b);
             bm.Create(bb);
@@ -140,8 +168,10 @@ namespace UnitTestS
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
 
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now };
-            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now };
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
+            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
 
             bm.Create(b);
 
@@ -162,11 +192,13 @@ namespace UnitTestS
         [TestMethod]
         public void ReadAllBooking_Test()
         {
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
 
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now };
-            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now };
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
+            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
 
             bm.Create(b);
             bm.Create(bb);
@@ -185,11 +217,14 @@ namespace UnitTestS
         [TestMethod]
         public void GetBookingById_Existing_Booking_Test()
         {
+
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
 
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now };
-            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now };
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
+            Booking bb = new Booking() { Id = 2, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
 
             bm.Create(b);
             bm.Create(bb);
@@ -204,11 +239,12 @@ namespace UnitTestS
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
 
-
+            var rooms = new List<Room>();
+            rooms.Add(new Room());
             //Create and adds the booking
-            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now };
+            Booking b = new Booking() { Id = 1, Breakfast = true, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
             bm.Create(b);
-            Booking bb = new Booking() { Id = 1, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now };
+            Booking bb = new Booking() { Id = 1, Breakfast = false, StartDate = DateTime.Today, EndDate = DateTime.Now, Room = rooms };
 
             bool isUpdated = bm.Update(bb);
 
