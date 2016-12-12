@@ -45,12 +45,12 @@ namespace DLL.DAL
 
 
 
-            FootCare f1 = new FootCare() {Id = 1, Name = "Massage", Price = 100, Description = "zzZzz"};
-            FootCare f2 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            FootCare f3 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            FootCare f4 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            FootCare f5 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
-            FootCare f6 = new FootCare() { Id = 1, Name = "Massage", Price = 100, Description = "zzZzz" };
+            FootCare f1 = new FootCare() {Id = 1, Name = "Massage1", Price = 99, Description = "no massage"};
+            FootCare f2 = new FootCare() { Id = 2, Name = "Massage2", Price = 120, Description = "ok mssage" };
+            FootCare f3 = new FootCare() { Id = 3, Name = "Massage3", Price = 130, Description = "betta massage" };
+            FootCare f4 = new FootCare() { Id = 4, Name = "Massage4", Price = 199, Description = "topdollar" };
+            FootCare f5 = new FootCare() { Id = 5, Name = "Massage5", Price = 300, Description = "Lovely massage" };
+            FootCare f6 = new FootCare() { Id = 6, Name = "Massage6", Price = 1000, Description = "Great massage" };
             Footcares.Add(f1);
             Footcares.Add(f2);
             Footcares.Add(f3);
