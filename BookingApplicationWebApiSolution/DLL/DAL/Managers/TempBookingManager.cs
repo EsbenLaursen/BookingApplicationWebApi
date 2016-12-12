@@ -8,7 +8,7 @@ using DLL.DAL.Repositories;
 
 namespace DLL.DAL.Managers
 {
-    class TempBookingManager : IRepository<TemporaryBooking>
+    public class TempBookingManager : IRepository<TemporaryBooking>
     {
         private IRepository<TemporaryBooking> tb;
 
@@ -27,6 +27,10 @@ namespace DLL.DAL.Managers
                 if (tb.Read(t.Id) != null)
                 {
                     throw new ArgumentException("TempBooking already exist");
+                }
+                if (t.Rooms == null || t.Rooms.Count <1)
+                {
+                    throw new ArgumentException("No rooms in temp booking");
                 }
                 return tb.Create(t);
             }
