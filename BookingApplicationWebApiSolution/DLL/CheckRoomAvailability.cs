@@ -114,7 +114,7 @@ namespace DLL
             var bookeddates = new List<DateTime>();
             foreach (var b in Bookings)
             {
-                if (b.EndDate.Millisecond >= DateTime.Now.Millisecond)
+                if (DateTime.Compare(b.EndDate, DateTime.Now)>=0)
                 {
                     for (var dt = b.StartDate; dt <= b.EndDate; dt = dt.AddDays(1))
                     {

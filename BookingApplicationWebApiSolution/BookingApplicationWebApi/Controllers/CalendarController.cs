@@ -13,13 +13,11 @@ namespace BookingApplicationWebApi.Controllers
 {
     public class CalendarController : ApiController
     {
-        IRepository<Booking> br = new DllFacade().GetBookingManager();
         [HttpGet]
         public List<DateTime> GetAvailableDates()
         {
-            List<Booking> Bookings = br.ReadAll();
             CheckRoomAvailability check = new CheckRoomAvailability();
-            List<DateTime> dates = check.FetchUnavailableDates2();
+            List<DateTime> dates = check.FetchUnavailableDates();
             return dates;
         }
         [HttpGet]

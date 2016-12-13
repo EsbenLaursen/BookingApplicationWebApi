@@ -31,7 +31,7 @@ namespace DLL.DAL.Repositories
         {
             using (var ctx = new BookingDbContext())
             {
-                return ctx.Rooms.FirstOrDefault(x => x.Id == id);
+                return ctx.Rooms.Include(x => x.Bookings).FirstOrDefault(x => x.Id == id);
             }
         }
 
@@ -39,7 +39,7 @@ namespace DLL.DAL.Repositories
         {
             using (var ctx = new BookingDbContext())
             {
-                return ctx.Rooms.ToList();
+                return ctx.Rooms.Include(x=>x.Bookings).ToList();
             }
         }
 
