@@ -33,6 +33,11 @@ namespace DLL.DAL
         {
             return new ImageRepository();
         }
+
+       public IRepository<Review> GetReviewManager()
+       {
+           return new ReviewRepository();
+       }
     }
 
 }
