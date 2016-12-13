@@ -34,7 +34,7 @@ namespace DLL
             foreach (var r1 in Rooms)//3rooms
             {
                 bool succes = true;
-                foreach (var b in Bookings)
+                foreach (var b in Bookings)//all bookings 
                 {
                     foreach (var r in b.Room)
                     {
@@ -106,5 +106,47 @@ namespace DLL
             return UnavailableDates;
         }
 
+
+
+        public List<DateTime> FetchUnavailableDates()
+        {
+            var unavailabledates = new List<DateTime>();
+            var bookeddates = new List<DateTime>();
+            foreach (var b in Bookings)
+            {
+                if (b.EndDate.Millisecond >= DateTime.Now.Millisecond)
+                {
+                    for (var dt = b.StartDate; dt <= b.EndDate; dt = dt.AddDays(1))
+                    {
+                        bookeddates.Add(dt);
+                    }
+                }
+
+            }
+            
+            foreach (var undate in bookeddates)
+            {
+                int i = 0;
+                foreach (var r in Rooms)
+                {
+                    foreach (var booking in r.Bookings)
+                    {
+                        for (var date = booking.StartDate; date <= booking.EndDate; date = date.AddDays(1))
+                        {
+                            if (date.Month == undate.Month && date.Date == undate.Date && date.Year == undate.Year)
+                            {
+                                i++;
+                            }
+                        }
+                    }
+                }
+                if (i == Rooms.Count)
+                {
+                    unavailabledates.Add(undate);
+                }
+            }
+
+            return unavailabledates;
+        }
     }
 }
