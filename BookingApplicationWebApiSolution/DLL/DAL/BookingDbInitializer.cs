@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,21 +18,18 @@ namespace DLL.DAL
             List<Booking> Bookings = new List<Booking>();
             List<Image> Images = new List<Image>();
             List<Room> Rooms = new List<Room>();
-            List<TemporaryBooking> TemporaryBooking = new List<TemporaryBooking>();
-
-            
-
+            List<Review> Reviews = new List<Review>();
 
             Image i1 = new Image() { ImageId = 1, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i2 = new Image() { ImageId = 2, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i3 = new Image() { ImageId = 3, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i4 = new Image() { ImageId = 4, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i5 = new Image() { ImageId = 5, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
-            Image i10 = new Image() { ImageId = 6, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i10 = new Image(){ ImageId = 6, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i6 = new Image() { ImageId = 7, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i7 = new Image() { ImageId = 8, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Image i8 = new Image() { ImageId = 9, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
-            Image i9 = new Image() { ImageId = 10, Path = "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
+            Image i9 = new Image() { ImageId = 10, Path= "http://res.cloudinary.com/emildall/image/upload/v1480933038/picture5.jpg" };
             Images.Add(i1);
             Images.Add(i2);
             Images.Add(i3);
@@ -78,12 +76,6 @@ namespace DLL.DAL
             Rooms.Add(r2);
             Rooms.Add(r3);
 
-            TemporaryBooking tb1 = new TemporaryBooking() { Id = 1, CustomerEmail = "dad@gm.com", CustomerFirstname = "xD", CustomerLastname = "dad", EndDate = DateTime.Now, StartDate = DateTime.Now, Rooms = new List<Room> { r2 } };
-            TemporaryBooking tb2 = new TemporaryBooking() { Id = 2, CustomerEmail = "emdail@gm.com", CustomerFirstname = "fgt", CustomerLastname = "Yourmom", EndDate = DateTime.Now, StartDate = DateTime.Now, Rooms = new List<Room> {r1} };
-            TemporaryBooking.Add(tb1);
-            TemporaryBooking.Add(tb2);
-
-
 
             Booking b1 = new Booking() { Id = 1, Breakfast = true, Customer = c1, EndDate = DateTime.Now.AddDays(2), StartDate = DateTime.Now.AddDays(1), Room = new List<Room>{ r1, r2, r3 } };
             Booking b2 = new Booking() { Id = 2, Breakfast = true, Customer = c5, EndDate = DateTime.Now.AddDays(8), StartDate = DateTime.Now.AddDays(5), Room = new List<Room> { r1, r2, r3 } };
@@ -96,13 +88,23 @@ namespace DLL.DAL
             Bookings.Add(b4);
             Bookings.Add(b5);
 
+            Review re1 = new Review() { Id = 1, Description = "Nice pets", Name = "Patrick", Rating = 5 };
+            Review re2 = new Review() { Id = 2, Description = "Nice pets", Name = "Patrick", Rating = 4 };
+            Review re3 = new Review() { Id = 3, Description = "Nice pets", Name = "Patrick", Rating = 3 };
+            Review re4 = new Review() { Id = 4, Description = "Nice pets", Name = "Patrick", Rating = 2 };
+            Reviews.Add(re1);
+            Reviews.Add(re2);
+            Reviews.Add(re3);
+            Reviews.Add(re4);
+
+            foreach (var Review in Reviews)
+            {
+                context.Reviews.Add(Review);
+            }
+
             foreach (var Image in Images)   
             {
                 context.Images.Add(Image);
-            }
-            foreach (var tempbook in TemporaryBooking)
-            {
-                context.TempBookings.Add(tempbook);
             }
 
             foreach (var Footcare in Footcares)

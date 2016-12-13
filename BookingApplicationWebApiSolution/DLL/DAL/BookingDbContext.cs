@@ -24,6 +24,8 @@ namespace DLL.DAL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<FootCare> FootCares { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,7 +34,6 @@ namespace DLL.DAL
 
             modelBuilder.Entity<Booking>().HasMany(r => r.Room).WithMany(b => b.Bookings);
             modelBuilder.Entity<TemporaryBooking>().HasMany(r => r.Rooms).WithMany(b => b.TemporaryBookings);
-
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
