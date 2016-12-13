@@ -19,9 +19,10 @@ namespace BookingApplicationWebApi.Controllers
         private IRepository<TemporaryBooking> repo = new DllFacade().GetTempBookingManager();
 
         // GET: api/TemporaryBookings
-        public List<TemporaryBooking> GetTempBookings()
+        [ResponseType(typeof(List<TemporaryBooking>))]
+        public IHttpActionResult GetTempBookings()
         {
-            return repo.ReadAll();
+            return Ok(repo.ReadAll());
         }
 
         // GET: api/TemporaryBookings/5
