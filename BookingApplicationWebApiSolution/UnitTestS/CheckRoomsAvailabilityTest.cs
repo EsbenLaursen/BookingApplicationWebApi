@@ -226,5 +226,34 @@ namespace UnitTestS
             Assert.AreEqual(0, availeblerooms.Count);
 
         }
+
+        [TestMethod]
+        public void FetchUnavailableDatesTests()
+        {
+            var rooms = new List<Room>();
+            var books = new List<Booking>();
+
+            var startdate = DateTime.Now;
+            var enddate = DateTime.Now.AddDays(1);
+
+            Room r = new Room() { Id = 1, Name = "Carlo" };
+            Room rr = new Room() { Id = 2, Name = "Morten" };
+
+            rooms.Add(r);
+            rooms.Add(rr);
+
+            Booking b = new Booking() { Id = 1, Room = new List<Room> { r,rr }, StartDate = startdate.AddDays(5), EndDate = enddate.AddDays(5) };
+            r.Bookings = new List<Booking> { b };
+            rr.Bookings = new List<Booking> { b };
+            books.Add(b);
+
+            var ava = new CheckRoomAvailability(rooms, books);
+
+            var unavaibledates = ava.FetchUnavailableDates();
+
+            Assert.AreEqual(2, unavaibledates.Count);
+
+        }
+
     }
 }
