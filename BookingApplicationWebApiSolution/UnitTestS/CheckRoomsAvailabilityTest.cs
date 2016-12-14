@@ -48,9 +48,7 @@ namespace UnitTestS
             Booking b = new Booking() { Id = 1, Room = new List<Room> { r }, EndDate = enddate, StartDate = startdate };
             books.Add(b);
 
-            var ava = new CheckRoomAvailability();
-            ava.Rooms = rooms;
-            ava.Bookings = books;
+            var ava = new CheckRoomAvailability(rooms, books);
 
             var availeblerooms = ava.Check(past, past);
 
@@ -73,9 +71,7 @@ namespace UnitTestS
             Booking b = new Booking() { Id = 1, EndDate = enddate, StartDate = startdate };
             books.Add(b);
 
-            var ava = new CheckRoomAvailability();
-            ava.Rooms = rooms;
-            ava.Bookings = books;
+            var ava = new CheckRoomAvailability(rooms, books);
 
 
             var list = ava.Check(startdate, enddate);
@@ -104,9 +100,7 @@ namespace UnitTestS
             rooms.Add(rr);
 
 
-            var ava = new CheckRoomAvailability();
-            ava.Rooms = rooms;
-            ava.Bookings = books;
+            var ava = new CheckRoomAvailability(rooms, books);
 
             var availeblerooms = ava.Check(startdate, enddate);
 
@@ -135,9 +129,7 @@ namespace UnitTestS
             r.Bookings = new List<Booking> { b };
             books.Add(b);
 
-            var ava = new CheckRoomAvailability();
-            ava.Rooms = rooms;
-            ava.Bookings = books;
+            var ava = new CheckRoomAvailability(rooms, books);
 
             var availeblerooms = ava.Check(startdate, enddate);
 
@@ -169,9 +161,7 @@ namespace UnitTestS
             r.Bookings = new List<Booking> { b };
             books.Add(b);
 
-            var ava = new CheckRoomAvailability();
-            ava.Rooms = rooms;
-            ava.Bookings = books;
+            var ava = new CheckRoomAvailability(rooms, books);
 
             var availeblerooms = ava.Check(startdate, enddate);
 

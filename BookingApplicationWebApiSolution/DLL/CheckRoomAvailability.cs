@@ -15,10 +15,12 @@ namespace DLL
         public IRepository<Booking> bg = new DllFacade().GetBookingManager();
         public List<Booking> Bookings;
         public List<Room> Rooms;
-        public CheckRoomAvailability()
+        public CheckRoomAvailability(List<Room> rlist, List<Booking> blist )
         {
-            //Rooms = sg.ReadAll();
-            //Bookings = bg.ReadAll();
+            Rooms = rlist;
+            Bookings = blist;
+
+
         }
 
         public List<Room> Check(DateTime start, DateTime end)
