@@ -5,47 +5,45 @@ using DLL.DAL.Entities;
 
 namespace DLL.DAL.Repositories
 {
-    public class ImageRepository : IRepository<Image>
+    public class ReviewRepository : IRepository<Review>
     {
-        public Image Create(Image t)
+        public Review Create(Review t)
         {
             using (var ctx = new BookingDbContext())
             {
-                ctx.Images.Add(t);
+                ctx.Reviews.Add(t);
                 ctx.SaveChanges();
                 return t;
             }
         }
 
-        public bool Delete(Image t)
+        public bool Delete(Review t)
         {
             using (var ctx = new BookingDbContext())
             {
-                ctx.Images.Attach(t);
-                ctx.Images.Remove(t);
+                ctx.Reviews.Remove(t);
                 ctx.SaveChanges();
                 return true;
             }
         }
 
-        public Image Read(int id)
+        public Review Read(int id)
         {
             using (var ctx = new BookingDbContext())
             {
-                return ctx.Images.FirstOrDefault(x => x.ImageId == id);
+                return ctx.Reviews.FirstOrDefault(x => x.Id == id);
             }
         }
 
-        public List<Image> ReadAll()
+        public List<Review> ReadAll()
         {
             using (var ctx = new BookingDbContext())
             {
-                return ctx.Images.ToList();
-
+                return ctx.Reviews.ToList();
             }
         }
 
-        public bool Update(Image t)
+        public bool Update(Review t)
         {
             using (var ctx = new BookingDbContext())
             {

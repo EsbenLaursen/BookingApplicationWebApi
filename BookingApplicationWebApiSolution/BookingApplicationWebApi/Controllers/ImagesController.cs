@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using CloudinaryDotNet;
 using DLL;
 using DLL.DAL;
 using DLL.DAL.Entities;
@@ -19,6 +20,7 @@ namespace BookingApplicationWebApi.Controllers
     {
         private IRepository<Image> repo = new DllFacade().GetImageManager();
 
+        
         // GET: api/Images
         public List<Image> GetImages()
         {
