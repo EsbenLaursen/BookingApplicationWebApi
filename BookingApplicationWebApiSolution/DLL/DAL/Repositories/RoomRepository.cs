@@ -21,6 +21,7 @@ namespace DLL.DAL.Repositories
         {
             using (var ctx = new BookingDbContext())
             {
+                ctx.Rooms.Attach(t);
                 ctx.Rooms.Remove(t);
                 ctx.SaveChanges();
                 return true;
