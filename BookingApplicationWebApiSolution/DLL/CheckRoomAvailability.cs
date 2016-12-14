@@ -17,8 +17,8 @@ namespace DLL
         public List<Room> Rooms;
         public CheckRoomAvailability()
         {
-            Rooms = sg.ReadAll();
-            Bookings = bg.ReadAll();
+            //Rooms = sg.ReadAll();
+            //Bookings = bg.ReadAll();
         }
 
         public List<Room> Check(DateTime start, DateTime end)

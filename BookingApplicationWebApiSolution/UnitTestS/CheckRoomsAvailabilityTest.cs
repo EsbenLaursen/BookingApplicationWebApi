@@ -178,5 +178,15 @@ namespace UnitTestS
             Assert.AreEqual(2, availeblerooms.Count);
 
         }
+
+        // Check for no bookings
+        // check for no rooms
+        //
+
+        [TestMethod]
+        public void FetchUnavailableDatesNoBookings()
+        {
+            
+        }
     }
 }
