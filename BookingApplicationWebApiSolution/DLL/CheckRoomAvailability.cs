@@ -11,10 +11,8 @@ namespace DLL
 
     public class CheckRoomAvailability
     {
-        public IRepository<Room> sg = new DllFacade().GetRoomManager();
-        public IRepository<Booking> bg = new DllFacade().GetBookingManager();
-        public List<Booking> Bookings;
-        public List<Room> Rooms;
+        private List<Booking> Bookings;
+        private List<Room> Rooms;
         public CheckRoomAvailability(List<Room> rlist, List<Booking> blist )
         {
             Rooms = rlist;
@@ -26,7 +24,7 @@ namespace DLL
         public List<Room> Check(DateTime start, DateTime end)
         {
             List<Room> RoomsAvailable = new List<Room>();
-            if (start.Date >= DateTime.Now.Date)
+            if (start.Date >= DateTime.Now.Date && Bookings != null && Rooms != null)
             {
                 
             
@@ -70,6 +68,11 @@ namespace DLL
         public List<DateTime> FetchUnavailableDates()
         {
             var unavailabledates = new List<DateTime>();
+            if (Bookings != null && Rooms != null)
+            {
+                
+            
+
             var bookeddates = new List<DateTime>();
             foreach (var b in Bookings)
             {
@@ -103,7 +106,7 @@ namespace DLL
                 {
                     unavailabledates.Add(undate);
                 }
-            }
+            }}
 
             return unavailabledates;
         }

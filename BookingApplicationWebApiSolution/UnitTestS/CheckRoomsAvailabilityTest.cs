@@ -176,7 +176,55 @@ namespace UnitTestS
         [TestMethod]
         public void FetchUnavailableDatesNoBookings()
         {
+            var rooms = new List<Room>();
+            var books = new List<Booking>();
+
+            Room r = new Room() { Id = 1, Name = "Carlo" };
+            Room rr = new Room() { Id = 2, Name = "Morten" };
+
+            rooms.Add(r);
+            rooms.Add(rr);
             
+            var ava = new CheckRoomAvailability(rooms, books);
+            var ldates = ava.FetchUnavailableDates();
+
+            Assert.AreEqual(0, ldates.Count);
+        }
+
+        [TestMethod]
+        public void FetchUnavailableDatesNoRooms()
+        {
+            var rooms = new List<Room>();
+            var books = new List<Booking>();
+            
+            var ava = new CheckRoomAvailability(rooms, books);
+            var ldates = ava.FetchUnavailableDates();
+
+            Assert.AreEqual(0, ldates.Count);
+        }
+
+        [TestMethod]
+        public void FetchUnavailebleDatesNullParametersTest()
+        {
+            var ava = new CheckRoomAvailability(null, null);
+            var ldates = ava.FetchUnavailableDates();
+
+            Assert.AreEqual(0, ldates.Count);
+        }
+
+        [TestMethod]
+        public void CheckForNullTest()
+        {
+    
+            var startdate = DateTime.Now;
+            var enddate = DateTime.Now;
+
+            var ava = new CheckRoomAvailability(null, null);
+
+            var availeblerooms = ava.Check(startdate, enddate);
+
+            Assert.AreEqual(0, availeblerooms.Count);
+
         }
     }
 }
