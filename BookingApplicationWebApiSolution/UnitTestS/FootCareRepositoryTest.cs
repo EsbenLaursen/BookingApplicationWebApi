@@ -232,5 +232,53 @@ namespace UnitTestS
             Assert.AreEqual(f1.Description, f2.Description);
             Assert.AreEqual(f1.Id, f2.Id);
         }
+
+        [TestMethod]
+        public void ReadNonExistingFootcare()
+        {
+
+            IRepository<FootCare> repo = mock.Object;
+            FootCareManager cm = new FootCareManager(repo);
+
+            FootCare f = new FootCare() { Id = 1 };
+
+            cm.Create(f);
+
+            try
+            {
+                cm.Read(0);
+                Assert.Fail("Read customer with id 0 ");
+            }
+            catch (ArgumentException)
+            {
+                Assert.AreEqual(1, footcare.Count);
+
+            }
+
+        }
+
+
+        [TestMethod]
+        public void UpdateNonExistingFootcare()
+        {
+            IRepository<FootCare> repo = mock.Object;
+            FootCareManager bm = new FootCareManager(repo);
+
+            FootCare f  = new FootCare() {Id = 1};
+            FootCare ff = new FootCare() {Id = 2 };
+
+            bm.Create(f);
+            try
+            {
+                bool isUpdated = bm.Update(ff);
+                Assert.Fail("Non existing footcare updated");
+            }
+            catch (Exception)
+            {
+                var book = bm.Read(1);
+                Assert.AreEqual(f.Id, book.Id);
+            }
+        }
+
     }
 }

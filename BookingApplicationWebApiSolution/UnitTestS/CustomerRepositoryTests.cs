@@ -1,11 +1,11 @@
-﻿    using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DLL.DAL.Entities;
 using System.Collections.Generic;
-    using Moq;
+using Moq;
 using System.Linq;
 using DLL.DAL.Managers;
-    using DLL.DAL.Repositories;
+using DLL.DAL.Repositories;
 
 namespace UnitTestS
 {
@@ -61,6 +61,30 @@ namespace UnitTestS
             Assert.Fail("Created footcareManager with null repository");
         }
 
+        [TestMethod]
+        public void ReadNonExistingCustomer()
+        {
+
+            IRepository<Customer> repo = mock.Object;
+            CustomerManager cm = new CustomerManager(repo);
+
+            Customer c = new Customer() { Id = 1 };
+
+            cm.Create(c);
+
+            try
+            {
+                cm.Read(0);
+                Assert.Fail("Read customer with id 0 ");
+            }
+            catch (ArgumentException)
+            {
+                Assert.AreEqual(1, customers.Count);
+
+            }
+
+        }
+
         /// <summary>
         /// Test method testing adding a new customer to the repository.
         /// </summary>
@@ -71,7 +95,7 @@ namespace UnitTestS
             IRepository<Customer> repo = mock.Object;
             CustomerManager cm = new CustomerManager(repo);
 
-            Customer f = new Customer() { Id = 1, Firstname = "Kenny", Lastname = "kühl", Email="Kuhlefar@gmail.com", PhoneNr="329573402" };
+            Customer f = new Customer() { Id = 1, Firstname = "Kenny", Lastname = "kühl", Email = "Kuhlefar@gmail.com", PhoneNr = "329573402" };
             cm.Create(f);
 
             Assert.AreEqual(f, cm.Read(1));
@@ -209,8 +233,8 @@ namespace UnitTestS
             Customer f1 = new Customer() { Id = 1, Firstname = "Kenny", Lastname = "kühl", Email = "Kuhlefar@gmail.com", PhoneNr = "329573402" };
             cm.Create(f1);
             Customer ff = new Customer() { Id = 1, Firstname = "Sandy", Lastname = "Esko", Email = "Babe@gmail.com", PhoneNr = "112222222" };
-            
-           
+
+
 
             bool isUpdated = cm.Update(ff);
 
@@ -223,5 +247,29 @@ namespace UnitTestS
             Assert.AreEqual(f1.PhoneNr, ff.PhoneNr);
             Assert.AreEqual(f1.Id, ff.Id);
         }
+
+        [TestMethod]
+        public void UpdateNonExistingCustomer()
+        {
+            IRepository<Customer> repo = mock.Object;
+            CustomerManager bm = new CustomerManager(repo);
+
+            Customer c = new Customer() { Id = 1 };
+            Customer cc = new Customer() { Id = 2 };
+
+            bm.Create(c);
+            try
+            {
+                bool isUpdated = bm.Update(cc);
+                Assert.Fail("Non existing customer updated");
+            }
+            catch (Exception)
+            {
+                var book = bm.Read(1);
+                Assert.AreEqual(c.Id, book.Id);
+            }
+        }
     }
+
+
 }

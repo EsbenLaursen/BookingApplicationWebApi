@@ -233,5 +233,52 @@ namespace UnitTestS
             Assert.AreEqual(fupdated.Description, f2.Description);
             Assert.AreEqual(fupdated.Id, f2.Id);
         }
+
+        [TestMethod]
+        public void ReadNonExistingReview()
+        {
+
+            IRepository<Review> repo = mock.Object;
+            ReviewManager cm = new ReviewManager(repo);
+
+            Review f = new Review() { Id = 1 };
+
+            cm.Create(f);
+
+            try
+            {
+                cm.Read(0);
+                Assert.Fail("Read review with id 0 ");
+            }
+            catch (ArgumentException)
+            {
+                Assert.AreEqual(1, reviews.Count);
+
+            }
+
+        }
+
+
+        [TestMethod]
+        public void UpdateNonExistingReview()
+        {
+            IRepository<Review> repo = mock.Object;
+            ReviewManager bm = new ReviewManager(repo);
+
+            Review f  = new Review() {Id = 1};
+            Review ff = new Review() {Id = 2 };
+
+            bm.Create(f);
+            try
+            {
+                bool isUpdated = bm.Update(ff);
+                Assert.Fail("Non existing Review updated");
+            }
+            catch (Exception)
+            {
+                var book = bm.Read(1);
+                Assert.AreEqual(f.Id, book.Id);
+            }
+        }
     }
 }
