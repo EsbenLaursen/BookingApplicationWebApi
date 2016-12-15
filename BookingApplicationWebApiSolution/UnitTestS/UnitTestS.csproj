@@ -92,6 +92,7 @@
     <Compile Include="CustomerRepositoryTests.cs" />
     <Compile Include="TempBookingRepositoryTest.cs" />
     <Compile Include="ReviewManagerTest.cs" />
+    <Compile Include="CheckRoomsAvailabilityTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLL\DLL.csproj">

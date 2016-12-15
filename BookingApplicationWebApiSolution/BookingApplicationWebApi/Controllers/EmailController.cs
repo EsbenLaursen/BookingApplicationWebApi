@@ -23,7 +23,7 @@ namespace BookingApplicationWebApi.Controllers
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("ag-mam@live.dk"));  // replace with valid value 
+                message.To.Add(new MailAddress("esben.laursen@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress(model.FromEmail);  // replace with valid value
                 message.Subject = model.Subject;
                 message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
@@ -33,8 +33,8 @@ namespace BookingApplicationWebApi.Controllers
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "ag-mam@live.dk",  // replace with valid value
-                        Password = "ag02-02"  // replace with valid value
+                        UserName = "esben.laursen@gmail.com",  // replace with valid value
+                        Password = "MinNyeKode12"  // replace with valid value
                     };
                     smtp.Credentials = credential;
                     smtp.Host = "smtp-mail.outlook.com";

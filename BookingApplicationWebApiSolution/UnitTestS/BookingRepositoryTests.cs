@@ -341,7 +341,7 @@ namespace UnitTestS
         }
 
         [TestMethod]
-        public void UpdateexistingBooking()
+        public void UpdateexistingBookingTest()
         {
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);
@@ -377,7 +377,7 @@ namespace UnitTestS
         }
 
         [TestMethod]
-        public void UpdateNonExistingBooking()
+        public void UpdateNonExistingBookingTest()
         {
             IRepository<Booking> repo = mock.Object;
             BookingManager bm = new BookingManager(repo);

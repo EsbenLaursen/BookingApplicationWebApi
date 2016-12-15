@@ -11,25 +11,30 @@ namespace DLL
 
     public class CheckRoomAvailability
     {
-        public IRepository<Room> sg = new DllFacade().GetRoomManager();
-        public IRepository<Booking> bg = new DllFacade().GetBookingManager();
-        List<Booking> Bookings;
-        List<Room> Rooms;
-        public CheckRoomAvailability()
+        private List<Booking> Bookings;
+        private List<Room> Rooms;
+        public CheckRoomAvailability(List<Room> rlist, List<Booking> blist )
         {
-            Rooms = sg.ReadAll();
-            Bookings = bg.ReadAll();
+            Rooms = rlist;
+            Bookings = blist;
+
+
         }
 
         public List<Room> Check(DateTime start, DateTime end)
         {
+            List<Room> RoomsAvailable = new List<Room>();
+            if (start.Date >= DateTime.Now.Date && Bookings != null && Rooms != null)
+            {
+                
+            
             var dates = new List<DateTime>();
             for (var dt = start; dt <= end; dt = dt.AddDays(1))
             {
                 dates.Add(dt);
             }
 
-            List<Room> RoomsAvailable = new List<Room>();
+            
 
             foreach (var r1 in Rooms)//3rooms
             {
@@ -54,63 +59,20 @@ namespace DLL
                 {
                     RoomsAvailable.Add(r1);
                 }
-            }
+            }}
 
             return RoomsAvailable;
         }
 
 
-        public List<DateTime> FetchUnavailableDates2()
-        {
-            List<DateTime> room1 = new List<DateTime>();
-            List<DateTime> room2 = new List<DateTime>();
-            List<DateTime> room3 = new List<DateTime>();
-
-            List<DateTime> UnavailableDates = new List<DateTime>();
-
-            foreach (var b in Bookings)
-            {
-                foreach (var r in b.Room)
-                {
-                    if (r.Id == 1)
-                    {
-                        for (var dt = b.StartDate; dt <= b.EndDate; dt = dt.AddDays(1))
-                        {
-                            room1.Add(dt);
-                        }
-                    }
-                    else if (r.Id == 2)
-                    {
-                        for (var dt = b.StartDate; dt <= b.EndDate; dt = dt.AddDays(1))
-                        {
-                            room2.Add(dt);
-                        }
-                    }
-                    else
-                    {
-                        for (var dt = b.StartDate; dt <= b.EndDate; dt = dt.AddDays(1))
-                        {
-                            room3.Add(dt);
-                        }
-                    }
-                }
-            }
-
-            foreach (var d in room1)
-            {
-                if (room2.Any(x => x.Day == d.Day && x.Month == d.Month && x.Year == d.Year) && room3.Any(x => x.Day == d.Day && x.Month == d.Month && x.Year == d.Year))
-                {
-                    UnavailableDates.Add(d);
-                }
-            }
-            return UnavailableDates;
-        }
-
-
-
         public List<DateTime> FetchUnavailableDates()
         {
             var unavailabledates = new List<DateTime>();
+            if (Bookings != null && Rooms != null)
+            {
+                
+            
+
             var bookeddates = new List<DateTime>();
             foreach (var b in Bookings)
             {
@@ -144,7 +106,7 @@ namespace DLL
                 {
                     unavailabledates.Add(undate);
                 }
-            }
+            }}
 
             return unavailabledates;
         }
