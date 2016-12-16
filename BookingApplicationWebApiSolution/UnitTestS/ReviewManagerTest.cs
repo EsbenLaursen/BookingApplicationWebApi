@@ -80,7 +80,7 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f = new Review() { Id = 1, Rating = 4,Name = "anders", Description = "blabla"};
+            Review f = new Review() { Id = 1,Name = "anders", Description = "blabla"};
             rm.Create(f);
 
             Assert.AreEqual(f, rm.Read(1));
@@ -99,7 +99,7 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "blabla" };
+            Review f = new Review() { Id = 1, Name = "anders", Description = "blabla" };
             rm.Create(f);
 
             try
@@ -124,8 +124,8 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "blabla" };
-            Review ff = new Review() { Id = 2, Rating = 4, Name = "anders", Description = "muchen" };
+            Review f = new Review() { Id = 1, Name = "anders", Description = "blabla" };
+            Review ff = new Review() { Id = 2, Name = "anders", Description = "muchen" };
 
 
             rm.Create(f);
@@ -150,8 +150,8 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "blabla" };
-            Review ff = new Review() { Id = 2, Rating = 4, Name = "anders", Description = "muchen" };
+            Review f = new Review() { Id = 1, Name = "anders", Description = "blabla" };
+            Review ff = new Review() { Id = 2, Name = "anders", Description = "muchen" };
 
 
             rm.Create(f);
@@ -175,8 +175,8 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "blabla" };
-            Review ff = new Review() { Id = 2, Rating = 4, Name = "anders", Description = "muchen" };
+            Review f = new Review() { Id = 1, Name = "anders", Description = "blabla" };
+            Review ff = new Review() { Id = 2, Name = "anders", Description = "muchen" };
 
 
             rm.Create(f);
@@ -199,8 +199,8 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "blabla" };
-            Review ff = new Review() { Id = 2, Rating = 4, Name = "anders", Description = "muchen" };
+            Review f = new Review() { Id = 1, Name = "anders", Description = "blabla" };
+            Review ff = new Review() { Id = 2, Name = "anders", Description = "muchen" };
 
 
             rm.Create(f);
@@ -217,8 +217,8 @@ namespace UnitTestS
             IRepository<Review> repo = mock.Object;
             ReviewManager rm = new ReviewManager(repo);
 
-            Review f1 = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "blabla" };
-            Review f2 = new Review() { Id = 1, Rating = 4, Name = "anders", Description = "muchen" };
+            Review f1 = new Review() { Id = 1, Name = "anders", Description = "blabla" };
+            Review f2 = new Review() { Id = 1, Name = "anders", Description = "muchen" };
 
 
             rm.Create(f1);
@@ -229,7 +229,6 @@ namespace UnitTestS
 
             Assert.AreEqual(true, isUpdated);
             Assert.AreEqual(fupdated.Name, f2.Name);
-            Assert.AreEqual(fupdated.Rating, f2.Rating);
             Assert.AreEqual(fupdated.Description, f2.Description);
             Assert.AreEqual(fupdated.Id, f2.Id);
         }
