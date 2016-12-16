@@ -1,4 +1,6 @@
-﻿using DLL.DAL.Entities;
+﻿using DLL.DAL;
+using DLL.DAL.Entities;
+using DLL.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace BookingApplicationWebApi.Controllers
 {
     public class EmailController : ApiController
     {
-
+        AdminRepository repo = new DllFacade().GetAdminManager();
         [ResponseType(typeof(void))]
         [ValidateAntiForgeryToken]
         public async Task<IHttpActionResult> Contact(EmailFromModel model)
@@ -46,6 +48,18 @@ namespace BookingApplicationWebApi.Controllers
             }
             return BadRequest("Not sent");
         }
+
+        public List<String> GetAdmin()
+        {
+            var admin = repo.GetAdmin();
+            var list = new List<String>() {
+                admin.Username, admin.Password
+            };
+
+            return list;
+        }
+
+
 
     }
 }

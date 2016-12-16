@@ -69,6 +69,9 @@ namespace DLL.DAL
             Customers.Add(c5);
             Customers.Add(c6);
 
+            Admin a = new Admin() { Username = "mor" , Password = "lol123"};
+            context.Admins.Add(a);
+
             Room r1 = new Room() { Id = 1, Description = "Beutiful room", Name="Living room", Persons=3, Price=500};
             Room r2 = new Room() { Id = 2, Description = "Gross room", Name = "Bathroom", Persons = 1, Price = 600};
             Room r3 = new Room() { Id = 3, Description = "putirovroom", Name = "Bed room", Persons = 3, Price = 700 };

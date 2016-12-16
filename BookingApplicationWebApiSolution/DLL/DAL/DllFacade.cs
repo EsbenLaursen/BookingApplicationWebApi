@@ -1,4 +1,5 @@
-﻿using DLL.DAL.Entities;
+﻿using System;
+using DLL.DAL.Entities;
 using DLL.DAL.Repositories;
 
 namespace DLL.DAL
@@ -17,6 +18,11 @@ namespace DLL.DAL
         public IRepository<Customer> GetCustomerManager()       
         {
             return new CustomerRepository();
+        }
+
+        public AdminRepository GetAdminManager()
+        {
+            return new AdminRepository();
         }
 
         public IRepository<FootCare> GetFootCareManager()

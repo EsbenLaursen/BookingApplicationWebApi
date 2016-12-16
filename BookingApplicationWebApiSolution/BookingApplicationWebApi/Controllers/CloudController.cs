@@ -15,10 +15,6 @@ namespace BookingApplicationWebApi.Controllers
     public class CloudController : ApiController
     {
         private IRepository<Image> repo = new DllFacade().GetImageManager();
-
-        static Cloudinary m_cloudinary;
-
-
       
            public List<String> GetAcc()
         {
