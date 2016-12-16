@@ -19,9 +19,10 @@ namespace BookingApplicationWebApi.Controllers
         private IRepository<Review> repo = new DllFacade().GetReviewManager();
 
         // GET: api/Reviews
-        public List<Review> GetReviews()
+        [ResponseType(typeof(List<Review>))]
+        public IHttpActionResult GetReviews()
         {
-            return repo.ReadAll();
+            return Ok(repo.ReadAll());
         }
 
         // GET: api/Reviews/5

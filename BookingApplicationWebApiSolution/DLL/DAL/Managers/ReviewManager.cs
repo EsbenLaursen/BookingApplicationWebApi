@@ -62,7 +62,7 @@ namespace DLL.DAL.Managers
             }
             Review rw = fcr.Read(r.Id);
             rw.Name = r.Name;
-            rw.Rating = r.Rating;
+            
             rw.Description = r.Description;
 
             return true;

@@ -91,10 +91,10 @@ namespace DLL.DAL
             Bookings.Add(b4);
             Bookings.Add(b5);
 
-            Review re1 = new Review() { Id = 1, Description = "Nice pets", Name = "Patrick", Rating = 5 };
-            Review re2 = new Review() { Id = 2, Description = "Nice pets", Name = "Patrick", Rating = 4 };
-            Review re3 = new Review() { Id = 3, Description = "Nice pets", Name = "Patrick", Rating = 3 };
-            Review re4 = new Review() { Id = 4, Description = "Nice pets", Name = "Patrick", Rating = 2 };
+            Review re1 = new Review() { Id = 1, Description = "Nice pets", Name = "Patrick" };
+            Review re2 = new Review() { Id = 2, Description = "Nice pets", Name = "Patrick" };
+            Review re3 = new Review() { Id = 3, Description = "Nice pets", Name = "Patrick" };
+            Review re4 = new Review() { Id = 4, Description = "Nice pets", Name = "Patrick" };
             Reviews.Add(re1);
             Reviews.Add(re2);
             Reviews.Add(re3);
