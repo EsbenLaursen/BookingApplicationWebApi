@@ -16,17 +16,20 @@ using DLL.DAL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
+    [Authorize]
     public class BookingsController : ApiController
     {
 
         public IRepository<Booking> repo = new DllFacade().GetBookingManager();
 
+        [AllowAnonymous]
         // GET: api/Bookings
         public List<Booking> GetBookings()
         {
             return repo.ReadAll();
         }
 
+        [AllowAnonymous]
         // GET: api/Bookings/5
         [ResponseType(typeof(Booking))]
         public IHttpActionResult GetBooking(int id)
@@ -40,6 +43,7 @@ namespace BookingApplicationWebApi.Controllers
             return Ok(booking);
         }
 
+        [Authorize]
         // PUT: api/Bookings/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutBooking(int id, Booking booking)
@@ -58,7 +62,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Bookings
         [ResponseType(typeof(Booking))]
         public IHttpActionResult PostBooking(Booking booking)
@@ -72,7 +76,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = booking.CustomerId }, booking);
         }
-
+        [Authorize]
         // DELETE: api/Bookings/5
         [ResponseType(typeof(Booking))]
         public IHttpActionResult DeleteBooking(int id)

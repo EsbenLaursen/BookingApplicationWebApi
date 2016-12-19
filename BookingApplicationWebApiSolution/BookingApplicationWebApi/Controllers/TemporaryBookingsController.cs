@@ -37,7 +37,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return Ok(temporaryBooking);
         }
-
+        [Authorize]
         // PUT: api/TemporaryBookings/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTemporaryBooking(int id, TemporaryBooking temporaryBooking)
@@ -56,7 +56,7 @@ namespace BookingApplicationWebApi.Controllers
            
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/TemporaryBookings
         [ResponseType(typeof(TemporaryBooking))]
         public IHttpActionResult PostTemporaryBooking(TemporaryBooking temporaryBooking)
@@ -70,7 +70,7 @@ namespace BookingApplicationWebApi.Controllers
            
             return CreatedAtRoute("DefaultApi", new { id = temporaryBooking.Id }, temporaryBooking);
         }
-
+        [Authorize]
         // DELETE: api/TemporaryBookings/5
         [ResponseType(typeof(TemporaryBooking))]
         public IHttpActionResult DeleteTemporaryBooking(int id)

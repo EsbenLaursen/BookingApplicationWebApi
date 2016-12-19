@@ -51,14 +51,6 @@ namespace DLL.DAL.Repositories
                 ctx.SaveChanges();
                 return true;
             }
-        }
-
-        public Admin ReadAdmin()
-        {
-            using (var ctx = new BookingDbContext())
-            {
-                return ctx.Admins.FirstOrDefault();
-            }
-        }
+        } 
     }
 }

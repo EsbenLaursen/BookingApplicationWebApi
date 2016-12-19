@@ -36,7 +36,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return Ok(footCare);
         }
-
+        [Authorize]
         // PUT: api/FootCares/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutFootCare(int id, FootCare footCare)
@@ -55,7 +55,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/FootCares
         [ResponseType(typeof(FootCare))]
         public IHttpActionResult PostFootCare(FootCare footCare)
@@ -69,7 +69,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = footCare.Id }, footCare);
         }
-
+        [Authorize]
         // DELETE: api/FootCares/5
         [ResponseType(typeof(FootCare))]
         public IHttpActionResult DeleteFootCare(int id)

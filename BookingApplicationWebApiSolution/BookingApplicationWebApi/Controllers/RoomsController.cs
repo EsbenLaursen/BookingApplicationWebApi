@@ -40,6 +40,7 @@ namespace BookingApplicationWebApi.Controllers
             return Ok(room);
         }
 
+        [Authorize]
         // PUT: api/Rooms/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRoom(int id, Room room)
@@ -58,7 +59,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Rooms
         [ResponseType(typeof(Room))]
         public IHttpActionResult PostRoom(Room room)
@@ -72,7 +73,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = room.Id }, room);
         }
-
+        [Authorize]
         // DELETE: api/Rooms/5
         [ResponseType(typeof(Room))]
         public IHttpActionResult DeleteRoom(int id)

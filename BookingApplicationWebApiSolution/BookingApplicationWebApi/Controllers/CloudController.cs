@@ -12,6 +12,7 @@ using DLL.DAL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
+    [Authorize]
     public class CloudController : ApiController
     {
         private IRepository<Image> repo = new DllFacade().GetImageManager();

@@ -40,6 +40,7 @@ namespace BookingApplicationWebApi.Controllers
             return Ok(image);
         }
 
+        [Authorize]
         // PUT: api/Images/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutImage(int id, Image image)
@@ -57,7 +58,7 @@ namespace BookingApplicationWebApi.Controllers
             repo.Update(image);
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Images
         [ResponseType(typeof(Image))]
         public IHttpActionResult PostImage(Image image)
@@ -71,7 +72,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = image.ImageId }, image);
         }
-
+        [Authorize]
         // DELETE: api/Images/5
         [ResponseType(typeof(Image))]
         public IHttpActionResult DeleteImage(int id)

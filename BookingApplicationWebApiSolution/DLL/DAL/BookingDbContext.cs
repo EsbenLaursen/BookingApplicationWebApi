@@ -25,7 +25,6 @@ namespace DLL.DAL
         public DbSet<FootCare> FootCares { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<Admin> Admins { get; set; }
 
 
 

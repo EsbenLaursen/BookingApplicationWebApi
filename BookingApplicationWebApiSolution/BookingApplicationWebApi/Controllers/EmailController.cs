@@ -14,9 +14,10 @@ using System.Web.Mvc;
 
 namespace BookingApplicationWebApi.Controllers
 {
+    
     public class EmailController : ApiController
     {
-        AdminRepository repo = new DllFacade().GetAdminManager();
+      
         [ResponseType(typeof(void))]
         [ValidateAntiForgeryToken]
         public async Task<IHttpActionResult> Contact(EmailFromModel model)
@@ -25,7 +26,7 @@ namespace BookingApplicationWebApi.Controllers
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("esben.laursen@gmail.com"));  // replace with valid value 
+                message.To.Add(new MailAddress("sand32hus@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress(model.FromEmail);  // replace with valid value
                 message.Subject = model.Subject;
                 message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
@@ -35,11 +36,14 @@ namespace BookingApplicationWebApi.Controllers
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "esben.laursen@gmail.com",  // replace with valid value
-                        Password = "MinNyeKode12"  // replace with valid value
+                        // UserName = "ag-mam@live.dk",  // replace with valid value
+                        // Password = "1april1427"  // replace with valid value
+
+                         UserName = "sand32hus@gmail.com",
+                         Password = "12a12a12a"
                     };
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp-mail.outlook.com";
+                    smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(message);
@@ -49,15 +53,7 @@ namespace BookingApplicationWebApi.Controllers
             return BadRequest("Not sent");
         }
 
-        public List<String> GetAdmin()
-        {
-            var admin = repo.GetAdmin();
-            var list = new List<String>() {
-                admin.Username, admin.Password
-            };
-
-            return list;
-        }
+      
 
 
 
