@@ -10,7 +10,7 @@ using Moq;
 namespace UnitTestS
 {
     [TestClass]
-    public class TempBookingRepositoryTest
+    public class TempBookingManagerTest
     {
         [TestClass]
         public class TempBookingRepositoryTests

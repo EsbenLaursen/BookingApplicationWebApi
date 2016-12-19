@@ -10,7 +10,7 @@ using DLL.DAL.Repositories;
 namespace UnitTestS
 {
     [TestClass]
-    public class CustomerRepositoryTests
+    public class CustomerManagerTests
     {
 
         private static IList<Customer> customers = new List<Customer>();

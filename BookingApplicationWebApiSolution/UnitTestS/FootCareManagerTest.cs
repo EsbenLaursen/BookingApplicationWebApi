@@ -10,7 +10,7 @@ using Moq;
 namespace UnitTestS
 {
     [TestClass]
-    public class FootCareRepositoryTest
+    public class FootCareManagerTest
     {
         private static Mock<IRepository<FootCare>> mock;
 

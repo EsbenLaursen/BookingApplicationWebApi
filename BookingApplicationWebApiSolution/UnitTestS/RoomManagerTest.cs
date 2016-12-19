@@ -12,7 +12,7 @@ using Moq;
 namespace UnitTestS
 {
     [TestClass]
-    public class RoomRepositoryTest
+    public class RoomManagerTest
     {
         private static Mock<IRepository<Room>> mock;
 

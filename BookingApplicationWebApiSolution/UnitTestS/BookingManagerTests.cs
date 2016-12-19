@@ -11,7 +11,7 @@ using Moq;
 namespace UnitTestS
 {
     [TestClass]
-    public class BookingRepositoryTests
+    public class BookingManagerTests
     {
         private static IList<Booking> bookings = new List<Booking>();
 

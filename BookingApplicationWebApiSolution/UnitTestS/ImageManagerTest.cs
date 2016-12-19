@@ -12,7 +12,7 @@ namespace UnitTestS
 {
 
     [TestClass]
-    public class ImageRepositoryTest
+    public class ImageManagerTest
     {
         private static Mock<IRepository<Image>> mock;
 
