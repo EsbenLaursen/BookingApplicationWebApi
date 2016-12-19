@@ -76,8 +76,9 @@ namespace BookingApplicationWebApi.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = booking.CustomerId }, booking);
         }
-        [Authorize]
+
         // DELETE: api/Bookings/5
+        [Authorize]
         [ResponseType(typeof(Booking))]
         public IHttpActionResult DeleteBooking(int id)
         {
