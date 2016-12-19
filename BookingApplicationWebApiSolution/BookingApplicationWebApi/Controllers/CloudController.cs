@@ -16,11 +16,11 @@ namespace BookingApplicationWebApi.Controllers
     public class CloudController : ApiController
     {
         private IRepository<Image> repo = new DllFacade().GetImageManager();
-      
-           public List<String> GetAcc()
+
+        public List<String> GetAcc()
         {
             var list = new List<String>() {
-           "emildall",
+                "emildall",
                 "573275437216378",
                 "TNnMz8L7AWunpnUuQRfxVmGV12g"};
 
