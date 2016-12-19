@@ -20,11 +20,6 @@ namespace DLL.DAL
             return new CustomerRepository();
         }
 
-        public AdminRepository GetAdminManager()
-        {
-            return new AdminRepository();
-        }
-
         public IRepository<FootCare> GetFootCareManager()
         {
             return new FootCareRepository();

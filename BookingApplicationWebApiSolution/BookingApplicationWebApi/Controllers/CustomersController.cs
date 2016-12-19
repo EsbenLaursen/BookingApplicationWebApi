@@ -15,6 +15,7 @@ using DLL.DAL.Repositories;
 
 namespace BookingApplicationWebApi.Controllers
 {
+
     public class CustomersController : ApiController
     {
         private IRepository<Customer> repo = new DllFacade().GetCustomerManager();
@@ -38,6 +39,7 @@ namespace BookingApplicationWebApi.Controllers
             return Ok(customer);
         }
 
+        [Authorize]
         // PUT: api/Customers/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCustomer(int id, Customer customer)
@@ -57,6 +59,7 @@ namespace BookingApplicationWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize]
         // POST: api/Customers
         [ResponseType(typeof(Customer))]
         public IHttpActionResult PostCustomer(Customer customer)
@@ -70,7 +73,7 @@ namespace BookingApplicationWebApi.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = customer.Id }, customer);
         }
-
+        [Authorize]
         // DELETE: api/Customers/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult DeleteCustomer(int id)
