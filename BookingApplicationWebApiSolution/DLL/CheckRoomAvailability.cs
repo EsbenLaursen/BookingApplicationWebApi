@@ -17,8 +17,6 @@ namespace DLL
         {
             Rooms = rlist;
             Bookings = blist;
-
-
         }
 
         public List<Room> Check(DateTime start, DateTime end)
@@ -26,15 +24,11 @@ namespace DLL
             List<Room> RoomsAvailable = new List<Room>();
             if (start.Date >= DateTime.Now.Date && Bookings != null && Rooms != null)
             {
-
-
                 var dates = new List<DateTime>();
                 for (var dt = start; dt <= end; dt = dt.AddDays(1))
                 {
                     dates.Add(dt);
                 }
-
-
 
                 foreach (var r1 in Rooms)//3rooms
                 {
